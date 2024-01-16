@@ -137,8 +137,8 @@ def yolov5_process(stop_signal, model_path:str, ipc_image_pipe_name:str, ipc_dis
     """
 
     # 0 init
-    # resize_type = sail.sail_resize_type.BM_PADDING_TPU_LINEAR
-    resize_type = sail.sail_resize_type.BM_RESIZE_TPU_NEAREST
+    resize_type = sail.sail_resize_type.BM_PADDING_TPU_LINEAR
+    # resize_type = sail.sail_resize_type.BM_RESIZE_TPU_NEAREST
     alpha_beta = (1.0/255,0),(1.0/255,0),(1.0/255,0)
 
     engine_image_pre_process = sail.EngineImagePreProcess(model_path, tpu_id, use_mat_output=0) # use_mat_output 是否使用OpenCV的Mat作为图片的输出，默认为False，不使用。
