@@ -24,7 +24,7 @@ def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engin
     multiDecoder.set_local_flag(True)
     multiDecoder.set_read_timeout(1) # 设置超时时间1s
 
-    # ipc = sail.IPC(True, image_pipe_decode2engine, dist_pipe_decode2engine, usec2c=True) 
+    ipc = sail.IPC(True, image_pipe_decode2engine, dist_pipe_decode2engine, usec2c=True) 
     logging.info('multidecoder ipc init success')
 
     if isinstance(input_paths, list):# 多路视频，str地址放在一个list
@@ -41,15 +41,14 @@ def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engin
             ret = multiDecoder.read(int(key),bmimg,read_mode = 1) 
 
             if ret == 0:
-                # ipc.sendBMImage(bmimg, key, frame_id)
+                ipc.sendBMImage(bmimg, key, frame_id)
                 frame_id +=1
                 logging.info("decode channel and sent to ipc done, channle id is %d, frameid is %d",key,frame_id)
+                print(frame_id)            
             else: 
                 time.sleep(0.001)
-        if frame_id == 100:
-            logging.info('!!!!!!!!!!!!!!!!!!!!decode need tobe done')
+        if frame_id == len(input_paths)*10:
             stop_signal.value = True
-            logging.info('!!!!!!!!!!!!!!!!!!!!decode need tobe done')
             break
     logging.info('decode done')
     try:
@@ -100,7 +99,7 @@ def main(args):
         '''
         单进程，解码器解码16路
         '''
-        input_video = [args.input for _ in range(proesss_nums*4)]
+        input_video = [args.input for _ in range(16)]
         send_process = multiprocessing.Process(target=multidecoder, args=(input_video, proesss_nums, stop_signal, image_pipe_decode2engine, dist_pipe_decode2engine, args.dev_id, 8)) 
         '''
         4进程，每个进程4batch
@@ -110,13 +109,13 @@ def main(args):
         logging.info(start_time)
 
         send_process.start()
-        # for i in receive:
-        #     i.start()
+        for i in receive:
+            i.start()
         logging.debug('start decode and yolo procrss')
         try:
             send_process.join()
-            # for i in receive:
-            #     i.join()
+            for i in receive:
+                i.join()
             logging.debug('DONE decode and yolo process')
         except:
             sys.exit(1)

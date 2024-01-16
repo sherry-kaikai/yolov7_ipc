@@ -1,6 +1,18 @@
-INFO:root:1705375507.8531775
+INFO:root:1705378782.553609
 DEBUG:root:start decode and yolo procrss
+DEBUG:root:YOLO init engine_image_pre_process output_shapes [[4, 3, 80, 80, 6], [4, 3, 40, 40, 6], [4, 3, 20, 20, 6]]
+DEBUG:root:YOLO RECEIVE IPC INIT
+DEBUG:root:YOLO process start
 INFO:root:multidecoder ipc init success
+DEBUG:root:YOLO init engine_image_pre_process output_shapes [[4, 3, 80, 80, 6], [4, 3, 40, 40, 6], [4, 3, 20, 20, 6]]
+DEBUG:root:YOLO RECEIVE IPC INIT
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO init engine_image_pre_process output_shapes [[4, 3, 80, 80, 6], [4, 3, 40, 40, 6], [4, 3, 20, 20, 6]]
+DEBUG:root:YOLO RECEIVE IPC INIT
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO init engine_image_pre_process output_shapes [[4, 3, 80, 80, 6], [4, 3, 40, 40, 6], [4, 3, 20, 20, 6]]
+DEBUG:root:YOLO RECEIVE IPC INIT
+DEBUG:root:YOLO process start
 INFO:root:Add Channel[0]: ../data/licenseplate.mp4
 INFO:root:Add Channel[1]: ../data/licenseplate.mp4
 INFO:root:Add Channel[2]: ../data/licenseplate.mp4
@@ -18,21 +30,57 @@ INFO:root:Add Channel[13]: ../data/licenseplate.mp4
 INFO:root:Add Channel[14]: ../data/licenseplate.mp4
 INFO:root:Add Channel[15]: ../data/licenseplate.mp4
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 2
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 3
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 4
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 5
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 6
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 7
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 8
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 9
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 10
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 11
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 12
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 13
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 14
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 15
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 16
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 17
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 18
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 19
@@ -59,1607 +107,1159 @@ INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 39
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 40
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 41
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 42
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 43
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 44
+DEBUG:root:channel_idx is 0 image_idx is 0,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 0 image_idx is 0,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 45
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 46
+INFO:root:image 0 CROP DONE! 
+DEBUG:root:channel_idx is 4 image_idx is 4,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 4 image_idx is 4,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 47
+INFO:root:image 4 CROP DONE! 
+DEBUG:root:channel_idx is 8 image_idx is 8,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 8 image_idx is 8,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 8 CROP DONE! 
+DEBUG:root:channel_idx is 12 image_idx is 12,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 12 image_idx is 12,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 12 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:YOLO pre and infer DONE!
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 1 image_idx is 1,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 1 image_idx is 1,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 1 CROP DONE! 
+DEBUG:root:channel_idx is 5 image_idx is 5,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 5 image_idx is 5,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 48
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 49
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 50
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 2 image_idx is 2,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 2 image_idx is 2,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 51
+INFO:root:image 5 CROP DONE! 
+DEBUG:root:channel_idx is 9 image_idx is 9,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 9 image_idx is 9,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 52
+INFO:root:image 2 CROP DONE! 
+INFO:root:image 9 CROP DONE! 
+DEBUG:root:channel_idx is 6 image_idx is 6,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 13 image_idx is 13,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 6 image_idx is 6,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 13 image_idx is 13,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 53
+INFO:root:image 6 CROP DONE! 
+INFO:root:image 13 CROP DONE! 
+DEBUG:root:channel_idx is 10 image_idx is 10,len(objs) is2
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:YOLO process start
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 10 image_idx is 10,len(objs) is2
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
 INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 54
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:image 10 CROP DONE! 
+DEBUG:root:channel_idx is 14 image_idx is 14,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 14 image_idx is 14,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 55
+INFO:root:image 14 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 56
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 57
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 58
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 59
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 3 image_idx is 3,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 3 image_idx is 3,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 60
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 61
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 62
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 63
+INFO:root:YOLO pre and infer DONE!
+INFO:root:image 3 CROP DONE! 
+DEBUG:root:channel_idx is 7 image_idx is 7,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 7 image_idx is 7,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 0 image_idx is 16,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+INFO:root:image 7 CROP DONE! 
+DEBUG:root:channel_idx is 0 image_idx is 16,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 11 image_idx is 11,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 11 image_idx is 11,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 16 CROP DONE! 
+INFO:root:image 11 CROP DONE! 
+DEBUG:root:channel_idx is 4 image_idx is 20,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 4 image_idx is 20,len(objs) is2
+DEBUG:root:channel_idx is 15 image_idx is 15,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7659760117530823)
+DEBUG:root:channel_idx is 15 image_idx is 15,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 20 CROP DONE! 
+DEBUG:root:channel_idx is 8 image_idx is 24,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 8 image_idx is 24,len(objs) is2
+INFO:root:image 15 CROP DONE! 
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:image 24 CROP DONE! 
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:channel_idx is 12 image_idx is 28,len(objs) is2
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:channel_idx is 12 image_idx is 28,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:image 28 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 64
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 65
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 66
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 67
 INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 68
 INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 69
 INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 70
 INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 71
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 1 image_idx is 17,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 1 image_idx is 17,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 72
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 73
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 74
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 75
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 76
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 77
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 78
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 79
+INFO:root:image 17 CROP DONE! 
+DEBUG:root:channel_idx is 2 image_idx is 18,len(objs) is2
+DEBUG:root:channel_idx is 5 image_idx is 21,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 2 image_idx is 18,len(objs) is2
+DEBUG:root:channel_idx is 5 image_idx is 21,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+INFO:root:image 18 CROP DONE! 
+INFO:root:image 21 CROP DONE! 
+DEBUG:root:channel_idx is 6 image_idx is 22,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 9 image_idx is 25,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 6 image_idx is 22,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 9 image_idx is 25,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+INFO:root:image 22 CROP DONE! 
+INFO:root:image 25 CROP DONE! 
+DEBUG:root:channel_idx is 10 image_idx is 26,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 13 image_idx is 29,len(objs) is2
+DEBUG:root:channel_idx is 10 image_idx is 26,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 13 image_idx is 29,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+INFO:root:image 26 CROP DONE! 
+INFO:root:image 29 CROP DONE! 
+DEBUG:root:channel_idx is 14 image_idx is 30,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 14 image_idx is 30,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO post and crop DONE!,len res is 8:
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:image 30 CROP DONE! 
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:YOLO process start
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata exit, time use: 0.00s
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:YOLO pre and infer DONE!
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 3 image_idx is 19,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 3 image_idx is 19,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 80
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 81
+DEBUG:root:channel_idx is 0 image_idx is 32,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 0 image_idx is 32,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 82
+INFO:root:image 19 CROP DONE! 
+DEBUG:root:channel_idx is 7 image_idx is 23,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 7 image_idx is 23,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 83
+INFO:root:image 32 CROP DONE! 
+INFO:root:image 23 CROP DONE! 
+DEBUG:root:channel_idx is 4 image_idx is 36,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 11 image_idx is 27,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 4 image_idx is 36,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 11 image_idx is 27,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 84
 INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 85
 INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 86
+INFO:root:image 36 CROP DONE! 
+DEBUG:root:channel_idx is 8 image_idx is 40,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 8 image_idx is 40,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
 INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 87
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 27 CROP DONE! 
+DEBUG:root:channel_idx is 15 image_idx is 31,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 15 image_idx is 31,len(objs) is2
+DEBUG:root:[288, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 453, 485, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 88
+INFO:root:image 40 CROP DONE! 
+DEBUG:root:channel_idx is 12 image_idx is 44,len(objs) is2
+INFO:root:image 31 CROP DONE! 
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 12 image_idx is 44,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO post and crop DONE!,len res is 8:
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 89
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:image 44 CROP DONE! 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+INFO:root:pushdata exit, time use: 0.00s
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 90
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 91
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 92
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 93
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 94
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 95
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 1 image_idx is 33,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 1 image_idx is 33,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:YOLO pre and infer DONE!
+INFO:root:image 33 CROP DONE! 
+DEBUG:root:channel_idx is 5 image_idx is 37,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 5 image_idx is 37,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 2 image_idx is 34,len(objs) is2
+INFO:root:image 37 CROP DONE! 
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 9 image_idx is 41,len(objs) is2
+DEBUG:root:channel_idx is 2 image_idx is 34,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 9 image_idx is 41,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 34 CROP DONE! 
+DEBUG:root:channel_idx is 6 image_idx is 38,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 6 image_idx is 38,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 41 CROP DONE! 
+DEBUG:root:channel_idx is 13 image_idx is 45,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 13 image_idx is 45,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 38 CROP DONE! 
+DEBUG:root:channel_idx is 10 image_idx is 42,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 10 image_idx is 42,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 45 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 96
+INFO:root:image 42 CROP DONE! 
+INFO:root:pushdata exit, time use: 0.00s
+DEBUG:root:channel_idx is 14 image_idx is 46,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 14 image_idx is 46,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 97
+INFO:root:image 46 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 98
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 99
 INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 100
 INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 101
 INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 102
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 103
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 104
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 105
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 106
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 107
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 3 image_idx is 35,len(objs) is2
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 108
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 3 image_idx is 35,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 109
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 110
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 111
+INFO:root:image 35 CROP DONE! 
+DEBUG:root:channel_idx is 7 image_idx is 39,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 7 image_idx is 39,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 0 image_idx is 48,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 0 image_idx is 48,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 0 image_idx is 48,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 39 CROP DONE! 
+DEBUG:root:channel_idx is 11 image_idx is 43,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:image 48 CROP DONE! 
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 11 image_idx is 43,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 4 image_idx is 52,len(objs) is3
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 4 image_idx is 52,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 4 image_idx is 52,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 43 CROP DONE! 
+DEBUG:root:channel_idx is 15 image_idx is 47,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:image 52 CROP DONE! 
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 15 image_idx is 47,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 8 image_idx is 56,len(objs) is3
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 8 image_idx is 56,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 8 image_idx is 56,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:image 47 CROP DONE! 
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:image 56 CROP DONE! 
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:channel_idx is 12 image_idx is 60,len(objs) is3
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:channel_idx is 12 image_idx is 60,len(objs) is3
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:channel_idx is 12 image_idx is 60,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 60 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 12:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:YOLO pre and infer DONE!
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 1 image_idx is 49,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 1 image_idx is 49,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 1 image_idx is 49,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 112
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 113
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 114
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 115
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 2 image_idx is 50,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 2 image_idx is 50,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 2 image_idx is 50,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 116
 INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 117
 INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 118
 INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 119
+INFO:root:image 49 CROP DONE! 
+DEBUG:root:channel_idx is 5 image_idx is 53,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 5 image_idx is 53,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 5 image_idx is 53,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 120
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 121
+INFO:root:image 50 CROP DONE! 
+DEBUG:root:channel_idx is 6 image_idx is 54,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 6 image_idx is 54,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 6 image_idx is 54,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 122
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 123
+INFO:root:image 53 CROP DONE! 
+DEBUG:root:channel_idx is 9 image_idx is 57,len(objs) is3
+INFO:root:image 54 CROP DONE! 
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 9 image_idx is 57,len(objs) is3
+DEBUG:root:channel_idx is 10 image_idx is 58,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 9 image_idx is 57,len(objs) is3
+DEBUG:root:channel_idx is 10 image_idx is 58,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 10 image_idx is 58,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 124
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 125
+INFO:root:image 58 CROP DONE! 
+INFO:root:image 57 CROP DONE! 
+DEBUG:root:channel_idx is 14 image_idx is 62,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 13 image_idx is 61,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 14 image_idx is 62,len(objs) is3
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:[288, 446, 240, 104]
+DEBUG:root:channel_idx is 13 image_idx is 61,len(objs) is3
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:[288, 446, 240, 104]
+DEBUG:root:channel_idx is 14 image_idx is 62,len(objs) is3
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 13 image_idx is 61,len(objs) is3
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 126
+INFO:root:image 62 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 12:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 127
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:image 61 CROP DONE! 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:YOLO post and crop DONE!,len res is 12:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:YOLO pre and infer DONE!
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 3 image_idx is 51,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 3 image_idx is 51,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 3 image_idx is 51,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:YOLO pre and infer DONE!
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 0 image_idx is 64,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 0 image_idx is 64,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 51 CROP DONE! 
+DEBUG:root:channel_idx is 7 image_idx is 55,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 7 image_idx is 55,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 7 image_idx is 55,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 128
+INFO:root:image 64 CROP DONE! 
+DEBUG:root:channel_idx is 4 image_idx is 68,len(objs) is2
+INFO:root:image 55 CROP DONE! 
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 4 image_idx is 68,len(objs) is2
+DEBUG:root:channel_idx is 11 image_idx is 59,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 11 image_idx is 59,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 11 image_idx is 59,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 129
+INFO:root:image 68 CROP DONE! 
+DEBUG:root:channel_idx is 8 image_idx is 72,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 8 image_idx is 72,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 130
+INFO:root:image 59 CROP DONE! 
+DEBUG:root:channel_idx is 15 image_idx is 63,len(objs) is3
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7251471281051636)
+DEBUG:root:channel_idx is 15 image_idx is 63,len(objs) is3
+DEBUG:root:[288, 446, 240, 104]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(259, 445, 485, 549, 0, 0.665496289730072)
+DEBUG:root:channel_idx is 15 image_idx is 63,len(objs) is3
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 131
+INFO:root:image 72 CROP DONE! 
+DEBUG:root:channel_idx is 12 image_idx is 76,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 12 image_idx is 76,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 132
 INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 133
+INFO:root:image 63 CROP DONE! 
+INFO:root:image 76 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 12:
+DEBUG:root:YOLO process start
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
 INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 134
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
 INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 135
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 136
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 137
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 138
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 139
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 140
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 141
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 142
+DEBUG:root:channel_idx is 1 image_idx is 65,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 1 image_idx is 65,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 143
+INFO:root:YOLO pre and infer DONE!
+INFO:root:image 65 CROP DONE! 
+DEBUG:root:channel_idx is 5 image_idx is 69,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 5 image_idx is 69,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 2 image_idx is 66,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 2 image_idx is 66,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 69 CROP DONE! 
+INFO:root:image 66 CROP DONE! 
+DEBUG:root:channel_idx is 9 image_idx is 73,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 6 image_idx is 70,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 9 image_idx is 73,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 6 image_idx is 70,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 73 CROP DONE! 
+DEBUG:root:channel_idx is 13 image_idx is 77,len(objs) is2
+INFO:root:image 70 CROP DONE! 
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 13 image_idx is 77,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 10 image_idx is 74,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 10 image_idx is 74,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 77 CROP DONE! 
+INFO:root:image 74 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:channel_idx is 14 image_idx is 78,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:channel_idx is 14 image_idx is 78,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:image 78 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:YOLO process start
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 144
 INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 145
 INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 146
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
 INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 147
+DEBUG:root:channel_idx is 0 image_idx is 80,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 0 image_idx is 80,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 148
 INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 149
 INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 150
 INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 151
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 152
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 3 image_idx is 67,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 3 image_idx is 67,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
 INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 153
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 80 CROP DONE! 
+DEBUG:root:channel_idx is 4 image_idx is 84,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 4 image_idx is 84,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 154
 INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 155
 INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 156
 INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 157
 INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 158
+INFO:root:image 67 CROP DONE! 
+INFO:root:image 84 CROP DONE! 
+DEBUG:root:channel_idx is 7 image_idx is 71,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 8 image_idx is 88,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 7 image_idx is 71,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 8 image_idx is 88,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
 INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 159
+INFO:root:image 71 CROP DONE! 
+INFO:root:image 88 CROP DONE! 
+DEBUG:root:channel_idx is 11 image_idx is 75,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 12 image_idx is 92,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:[0, 0, 160, 112]
+DEBUG:root:channel_idx is 11 image_idx is 75,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:[992, 454, 240, 88]
+DEBUG:root:channel_idx is 12 image_idx is 92,len(objs) is2
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 75 CROP DONE! 
+INFO:root:image 92 CROP DONE! 
+DEBUG:root:channel_idx is 15 image_idx is 79,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:channel_idx is 15 image_idx is 79,len(objs) is2
+DEBUG:root:YOLO process start
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:image 79 CROP DONE! 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+DEBUG:root:YOLO process start
+INFO:root:pushdata exit, time use: 0.00s
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+DEBUG:root:YOLO get bmimage from ipc
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata start, bmimg w is 1440, h is 1160 
+INFO:root:pushdata exit, time use: 0.00s
+INFO:root:YOLO pre and infer DONE!
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 1 image_idx is 81,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 1 image_idx is 81,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:YOLO pre and infer DONE!
 INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 160
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 161
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 162
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 163
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 164
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 165
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 166
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 167
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 168
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 169
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 170
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 171
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 172
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 173
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 174
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 175
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 176
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 177
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 178
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 179
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 180
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 181
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 182
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 183
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 184
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 185
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 186
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 187
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 188
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 189
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 190
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 191
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 192
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 193
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 194
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 195
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 196
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 197
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 198
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 199
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 200
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 201
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 202
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 203
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 204
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 205
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 206
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 207
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 208
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 209
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 210
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 211
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 212
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 213
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 214
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 215
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 216
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 217
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 218
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 219
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 220
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 221
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 222
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 223
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 224
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 225
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 226
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 227
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 228
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 229
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 230
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 231
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 232
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 233
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 234
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 235
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 236
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 237
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 238
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 239
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 240
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 241
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 242
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 243
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 244
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 245
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 246
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 247
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 248
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 249
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 250
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 251
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 252
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 253
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 254
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 255
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 256
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 257
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 258
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 259
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 260
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 261
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 262
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 263
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 264
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 265
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 266
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 267
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 268
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 269
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 270
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 271
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 272
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 273
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 274
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 275
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 276
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 277
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 278
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 279
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 280
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 281
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 282
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 283
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 284
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 285
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 286
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 287
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 288
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 289
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 290
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 291
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 292
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 293
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 294
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 295
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 296
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 297
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 298
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 299
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 300
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 301
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 302
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 303
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 304
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 305
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 306
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 307
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 308
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 309
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 310
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 311
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 312
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 313
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 314
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 315
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 316
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 317
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 318
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 319
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 320
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 321
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 322
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 323
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 324
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 325
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 326
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 327
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 328
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 329
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 330
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 331
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 332
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 333
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 334
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 335
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 336
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 337
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 338
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 339
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 340
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 341
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 342
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 343
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 344
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 345
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 346
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 347
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 348
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 349
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 350
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 351
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 352
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 353
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 354
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 355
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 356
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 357
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 358
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 359
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 360
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 361
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 362
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 363
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 364
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 365
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 366
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 367
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 368
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 369
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 370
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 371
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 372
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 373
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 374
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 375
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 376
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 377
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 378
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 379
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 380
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 381
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 382
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 383
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 384
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 385
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 386
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 387
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 388
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 389
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 390
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 391
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 392
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 393
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 394
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 395
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 396
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 397
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 398
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 399
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 400
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 401
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 402
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 403
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 404
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 405
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 406
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 407
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 408
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 409
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 410
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 411
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 412
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 413
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 414
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 415
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 416
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 417
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 418
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 419
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 420
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 421
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 422
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 423
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 424
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 425
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 426
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 427
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 428
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 429
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 430
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 431
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 432
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 433
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 434
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 435
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 436
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 437
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 438
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 439
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 440
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 441
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 442
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 443
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 444
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 445
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 446
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 447
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 448
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 449
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 450
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 451
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 452
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 453
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 454
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 455
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 456
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 457
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 458
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 459
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 460
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 461
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 462
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 463
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 464
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 465
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 466
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 467
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 468
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 469
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 470
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 471
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 472
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 473
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 474
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 475
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 476
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 477
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 478
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 479
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 480
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 481
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 482
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 483
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 484
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 485
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 486
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 487
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 488
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 489
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 490
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 491
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 492
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 493
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 494
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 495
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 496
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 497
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 498
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 499
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 500
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 501
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 502
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 503
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 504
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 505
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 506
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 507
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 508
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 509
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 510
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 511
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 512
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 513
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 514
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 515
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 516
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 517
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 518
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 519
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 520
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 521
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 522
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 523
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 524
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 525
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 526
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 527
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 528
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 529
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 530
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 531
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 532
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 533
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 534
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 535
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 536
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 537
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 538
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 539
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 540
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 541
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 542
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 543
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 544
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 545
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 546
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 547
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 548
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 549
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 550
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 551
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 552
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 553
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 554
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 555
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 556
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 557
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 558
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 559
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 560
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 561
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 562
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 563
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 564
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 565
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 566
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 567
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 568
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 569
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 570
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 571
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 572
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 573
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 574
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 575
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 576
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 577
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 578
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 579
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 580
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 581
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 582
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 583
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 584
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 585
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 586
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 587
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 588
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 589
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 590
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 591
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 592
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 593
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 594
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 595
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 596
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 597
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 598
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 599
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 600
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 601
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 602
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 603
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 604
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 605
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 606
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 607
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 608
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 609
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 610
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 611
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 612
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 613
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 614
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 615
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 616
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 617
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 618
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 619
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 620
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 621
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 622
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 623
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 624
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 625
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 626
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 627
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 628
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 629
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 630
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 631
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 632
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 633
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 634
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 635
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 636
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 637
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 638
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 639
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 640
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 641
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 642
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 643
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 644
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 645
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 646
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 647
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 648
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 649
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 650
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 651
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 652
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 653
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 654
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 655
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 656
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 657
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 658
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 659
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 660
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 661
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 662
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 663
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 664
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 665
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 666
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 667
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 668
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 669
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 670
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 671
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 672
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 673
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 674
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 675
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 676
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 677
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 678
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 679
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 680
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 681
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 682
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 683
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 684
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 685
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 686
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 687
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 688
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 689
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 690
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 691
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 692
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 693
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 694
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 695
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 696
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 697
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 698
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 699
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 700
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 701
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 702
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 703
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 704
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 705
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 706
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 707
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 708
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 709
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 710
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 711
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 712
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 713
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 714
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 715
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 716
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 717
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 718
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 719
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 720
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 721
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 722
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 723
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 724
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 725
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 726
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 727
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 728
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 729
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 730
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 731
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 732
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 733
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 734
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 735
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 736
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 737
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 738
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 739
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 740
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 741
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 742
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 743
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 744
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 745
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 746
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 747
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 748
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 749
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 750
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 751
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 752
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 753
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 754
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 755
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 756
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 757
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 758
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 759
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 760
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 761
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 762
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 763
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 764
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 765
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 766
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 767
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 768
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 769
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 770
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 771
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 772
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 773
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 774
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 775
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 776
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 777
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 778
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 779
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 780
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 781
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 782
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 783
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 784
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 785
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 786
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 787
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 788
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 789
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 790
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 791
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 792
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 793
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 794
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 795
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 796
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 797
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 798
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 799
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 800
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 801
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 802
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 803
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 804
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 805
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 806
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 807
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 808
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 809
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 810
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 811
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 812
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 813
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 814
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 815
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 816
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 817
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 818
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 819
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 820
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 821
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 822
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 823
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 824
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 825
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 826
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 827
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 828
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 829
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 830
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 831
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 832
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 833
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 834
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 835
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 836
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 837
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 838
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 839
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 840
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 841
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 842
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 843
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 844
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 845
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 846
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 847
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 848
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 849
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 850
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 851
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 852
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 853
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 854
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 855
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 856
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 857
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 858
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 859
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 860
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 861
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 862
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 863
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 864
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 865
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 866
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 867
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 868
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 869
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 870
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 871
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 872
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 873
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 874
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 875
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 876
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 877
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 878
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 879
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 880
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 881
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 882
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 883
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 884
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 885
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 886
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 887
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 888
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 889
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 890
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 891
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 892
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 893
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 894
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 895
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 896
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 897
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 898
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 899
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 900
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 901
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 902
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 903
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 904
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 905
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 906
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 907
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 908
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 909
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 910
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 911
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 912
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 913
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 914
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 915
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 916
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 917
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 918
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 919
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 920
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 921
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 922
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 923
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 924
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 925
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 926
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 927
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 928
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 929
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 930
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 931
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 932
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 933
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 934
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 935
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 936
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 937
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 938
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 939
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 940
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 941
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 942
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 943
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 944
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 945
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 946
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 947
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 948
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 949
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 950
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 951
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 952
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 953
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 954
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 955
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 956
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 957
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 958
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 959
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 960
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 961
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 962
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 963
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 964
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 965
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 966
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 967
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 968
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 969
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 970
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 971
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 972
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 973
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 974
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 975
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 976
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 977
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 978
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 979
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 980
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 981
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 982
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 983
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 984
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 985
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 986
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 987
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 988
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 989
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 990
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 991
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 992
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 993
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 994
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 995
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 996
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 997
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 998
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 999
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1000
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1001
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1002
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1003
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1004
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1005
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1006
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1007
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1008
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1009
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1010
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1011
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1012
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1013
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1014
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1015
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1016
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1017
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1018
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1019
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1020
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1021
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1022
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1023
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1024
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1025
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1026
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1027
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1028
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1029
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1030
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1031
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1032
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1033
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1034
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1035
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1036
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1037
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1038
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1039
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1040
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1041
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1042
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1043
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1044
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1045
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1046
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1047
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1048
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1049
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1050
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1051
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1052
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1053
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1054
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1055
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1056
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1057
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1058
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1059
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1060
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1061
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1062
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1063
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1064
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1065
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1066
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1067
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1068
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1069
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1070
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1071
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1072
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1073
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1074
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1075
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1076
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1077
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1078
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1079
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1080
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1081
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1082
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1083
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1084
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1085
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1086
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1087
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1088
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1089
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1090
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1091
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1092
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1093
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1094
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1095
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1096
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1097
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1098
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1099
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1100
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1101
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1102
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1103
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1104
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1105
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1106
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1107
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1108
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1109
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1110
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1111
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1112
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1113
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1114
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1115
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1116
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1117
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1118
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1119
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1120
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1121
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1122
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1123
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1124
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1125
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1126
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1127
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1128
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1129
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1130
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1131
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1132
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1133
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1134
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1135
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1136
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1137
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1138
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1139
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1140
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1141
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1142
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1143
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1144
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1145
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1146
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1147
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1148
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1149
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1150
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1151
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1152
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1153
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1154
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1155
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1156
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1157
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1158
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1159
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1160
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1161
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1162
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1163
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1164
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1165
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1166
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1167
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1168
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1169
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1170
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1171
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1172
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1173
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1174
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1175
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1176
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1177
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1178
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1179
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1180
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1181
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1182
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1183
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1184
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1185
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1186
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1187
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1188
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1189
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1190
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1191
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1192
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1193
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1194
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1195
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1196
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1197
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1198
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1199
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1200
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1201
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1202
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1203
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1204
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1205
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1206
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1207
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1208
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1209
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1210
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1211
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1212
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1213
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1214
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1215
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1216
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1217
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1218
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1219
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1220
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1221
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1222
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1223
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1224
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1225
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1226
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1227
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1228
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1229
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1230
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1231
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1232
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1233
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1234
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1235
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1236
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1237
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1238
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1239
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1240
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1241
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1242
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1243
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1244
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1245
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1246
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1247
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1248
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1249
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1250
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1251
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1252
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1253
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1254
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1255
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1256
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1257
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1258
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1259
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1260
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1261
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1262
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1263
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1264
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1265
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1266
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1267
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1268
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1269
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1270
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1271
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1272
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1273
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1274
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1275
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1276
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1277
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1278
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1279
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1280
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1281
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1282
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1283
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1284
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1285
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1286
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1287
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1288
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1289
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1290
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1291
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1292
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1293
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1294
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1295
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1296
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1297
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1298
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1299
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1300
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1301
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1302
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1303
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1304
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1305
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1306
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1307
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1308
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1309
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1310
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1311
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1312
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1313
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1314
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1315
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1316
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1317
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1318
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1319
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1320
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1321
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1322
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1323
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1324
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1325
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1326
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1327
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1328
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1329
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1330
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1331
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1332
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1333
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1334
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1335
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1336
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1337
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1338
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1339
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1340
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1341
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1342
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1343
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1344
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1345
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1346
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1347
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1348
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1349
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1350
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1351
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1352
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1353
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1354
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1355
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1356
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1357
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1358
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1359
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1360
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1361
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1362
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1363
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1364
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1365
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1366
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1367
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1368
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1369
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1370
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1371
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1372
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1373
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1374
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1375
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1376
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1377
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1378
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1379
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1380
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1381
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1382
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1383
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1384
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1385
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1386
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1387
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1388
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1389
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1390
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1391
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1392
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1393
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1394
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1395
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1396
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1397
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1398
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1399
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1400
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1401
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1402
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1403
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1404
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1405
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1406
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1407
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1408
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1409
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1410
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1411
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1412
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1413
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1414
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1415
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1416
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1417
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1418
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1419
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1420
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1421
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1422
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1423
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1424
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1425
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1426
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1427
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1428
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1429
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1430
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1431
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1432
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1433
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1434
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1435
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1436
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1437
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1438
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1439
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1440
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1441
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1442
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1443
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1444
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1445
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1446
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1447
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1448
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1449
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1450
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1451
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1452
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1453
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1454
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1455
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1456
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1457
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1458
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1459
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1460
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1461
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1462
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1463
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1464
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1465
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1466
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1467
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1468
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1469
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1470
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1471
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1472
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1473
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1474
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1475
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1476
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1477
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1478
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1479
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1480
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1481
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1482
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1483
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1484
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1485
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1486
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1487
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1488
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1489
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1490
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1491
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1492
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1493
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1494
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1495
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1496
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1497
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1498
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1499
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1500
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1501
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1502
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1503
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1504
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1505
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1506
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1507
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1508
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1509
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1510
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1511
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1512
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1513
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1514
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1515
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1516
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1517
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1518
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1519
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1520
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1521
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1522
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1523
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1524
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1525
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1526
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1527
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1528
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1529
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1530
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1531
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1532
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1533
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1534
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1535
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1536
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1537
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1538
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1539
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1540
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1541
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1542
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1543
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1544
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1545
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1546
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1547
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1548
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1549
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1550
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1551
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1552
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1553
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1554
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1555
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1556
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1557
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1558
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1559
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1560
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1561
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1562
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1563
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1564
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1565
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1566
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1567
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1568
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1569
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1570
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1571
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1572
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1573
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1574
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1575
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1576
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1577
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1578
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1579
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1580
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1581
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1582
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1583
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1584
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1585
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1586
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1587
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1588
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1589
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1590
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1591
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1592
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1593
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1594
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1595
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1596
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1597
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1598
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1599
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1600
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1601
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1602
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1603
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1604
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1605
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1606
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1607
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1608
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1609
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1610
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1611
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1612
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1613
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1614
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1615
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1616
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1617
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1618
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1619
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1620
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1621
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1622
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1623
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1624
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1625
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1626
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1627
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1628
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1629
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1630
-INFO:root:decode channel and sent to ipc done, channle id is 14, frameid is 1631
-INFO:root:decode channel and sent to ipc done, channle id is 15, frameid is 1632
-INFO:root:decode channel and sent to ipc done, channle id is 0, frameid is 1633
-INFO:root:decode channel and sent to ipc done, channle id is 1, frameid is 1634
-INFO:root:decode channel and sent to ipc done, channle id is 2, frameid is 1635
-INFO:root:decode channel and sent to ipc done, channle id is 3, frameid is 1636
-INFO:root:decode channel and sent to ipc done, channle id is 4, frameid is 1637
-INFO:root:decode channel and sent to ipc done, channle id is 5, frameid is 1638
-INFO:root:decode channel and sent to ipc done, channle id is 6, frameid is 1639
-INFO:root:decode channel and sent to ipc done, channle id is 7, frameid is 1640
-INFO:root:decode channel and sent to ipc done, channle id is 8, frameid is 1641
-INFO:root:decode channel and sent to ipc done, channle id is 9, frameid is 1642
-INFO:root:decode channel and sent to ipc done, channle id is 10, frameid is 1643
-INFO:root:decode channel and sent to ipc done, channle id is 11, frameid is 1644
-INFO:root:decode channel and sent to ipc done, channle id is 12, frameid is 1645
-INFO:root:decode channel and sent to ipc done, channle id is 13, frameid is 1646
+INFO:root:decode done
+INFO:root:image 81 CROP DONE! 
+DEBUG:root:channel_idx is 5 image_idx is 85,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 5 image_idx is 85,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 85 CROP DONE! 
+DEBUG:root:channel_idx is 9 image_idx is 89,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 9 image_idx is 89,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 89 CROP DONE! 
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 13 image_idx is 93,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 13 image_idx is 93,len(objs) is2
+DEBUG:root:channel_idx is 2 image_idx is 82,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 2 image_idx is 82,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 93 CROP DONE! 
+INFO:root:image 82 CROP DONE! 
+DEBUG:root:channel_idx is 6 image_idx is 86,len(objs) is2
+INFO:root:YOLO post and crop DONE!,len res is 8:
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:1705378783.2100616
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 6 image_idx is 86,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 86 CROP DONE! 
+DEBUG:root:channel_idx is 10 image_idx is 90,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 10 image_idx is 90,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 90 CROP DONE! 
+DEBUG:root:channel_idx is 14 image_idx is 94,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 14 image_idx is 94,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 94 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+INFO:root:1705378783.2126482
+INFO:root:YOLO pre and infer DONE!
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 0 image_idx is 96,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 0 image_idx is 96,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 96 CROP DONE! 
+DEBUG:root:channel_idx is 4 image_idx is 100,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 4 image_idx is 100,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 100 CROP DONE! 
+DEBUG:root:channel_idx is 8 image_idx is 104,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 8 image_idx is 104,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 104 CROP DONE! 
+DEBUG:root:channel_idx is 12 image_idx is 108,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 12 image_idx is 108,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:YOLO pre and infer DONE!
+INFO:root:image 108 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+INFO:root:1705378783.2259405
+INFO:root:push data to YOLO postprocess SUCCESS, ret: 0
+DEBUG:root:channel_idx is 3 image_idx is 83,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 3 image_idx is 83,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 83 CROP DONE! 
+DEBUG:root:channel_idx is 7 image_idx is 87,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 7 image_idx is 87,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 87 CROP DONE! 
+DEBUG:root:channel_idx is 11 image_idx is 91,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 11 image_idx is 91,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 91 CROP DONE! 
+DEBUG:root:channel_idx is 15 image_idx is 95,len(objs) is2
+DEBUG:root:[0, 0, 160, 112]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(0, 0, 146, 111, 0, 0.7461027503013611)
+DEBUG:root:channel_idx is 15 image_idx is 95,len(objs) is2
+DEBUG:root:[992, 454, 240, 88]
+INFO:root:YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :(983, 453, 1210, 541, 0, 0.665496289730072)
+INFO:root:image 95 CROP DONE! 
+INFO:root:YOLO post and crop DONE!,len res is 8:
+INFO:root:1705378783.2338135
