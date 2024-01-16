@@ -23,10 +23,11 @@ def yolov5_pre_infer(engine_image_pre_process, channel_id_list, frame_id_list, b
         while(ret != 0): # 如果push失败，等待
             logging.info("Porcess[{}]:[{}]PreProcessAndInference Thread Full, sleep: 10ms!".format(channel_id_list[i],frame_id_list[i]))
             time.sleep(0.01)
-    using_time = time.time()-time_start
-    logging.info("pushdata exit, time use: {:.2f}s".format(using_time))
+
+    logging.info("pushdata exit, time use: {:.2f}s".format(time.time()-time_start))
 
     res = engine_image_pre_process.GetBatchData(True)
+    logging.info("YOLO pre and process done, time use: {:.2f}s".format(time.time()-time_start))
     return  res # output_tensor_map, ost_images, channel_list, imageidx_list, padding_atrr
 
 
@@ -64,6 +65,8 @@ def yolov5_post(yolov5_post_async,bmcv, output_tensor_map:list, ost_images:list,
         需要cid、imageid 来一一对应做crop的原图。
 
     '''
+    start_time = time.time()
+
     # 0 处理数据
     # 获取原图宽高
     width_list = []
@@ -79,17 +82,19 @@ def yolov5_post(yolov5_post_async,bmcv, output_tensor_map:list, ost_images:list,
     dete_thresholds = dete_threshold*dete_thresholds
     nms_thresholds = nms_threshold*nms_thresholds
 
+    logging.info("YOLO postprocess init done, time use: {:.2f}s".format(time.time() - start_time))
     # 1 后处理
-    # yolov5_post_async = sail.algo_yolov5_post_cpu_opt_async([yolo_output_shape[0],yolo_output_shape[1],yolo_output_shape[2]],640,640,10)
     ret = yolov5_post_async.push_data(channel_list, imageidx_list, output_tensor_map, dete_thresholds, nms_thresholds, width_list, height_list, padding_atrr)
     if ret == 0:
-        logging.info("push data to YOLO postprocess SUCCESS, ret: {}".format(ret))
+        logging.debug("push data to YOLO postprocess SUCCESS, ret: {}".format(ret))
     else:
         logging.error("push data to YOLO postprocess FAIL, ret: {}".format(ret))
         time.sleep(0.01)
 
+    logging.info("YOLO postprocess done, time use: {:.2f}s".format(time.time() - start_time))
+
+    crop_time = time.time()
     # 2 得到后处理的一张图的结果，并做crop
-    # bmcv = sail.Bmcv(sail.Handle(tpu_id))
     res = []
     for _ in range(batch_size):
         objs, channel_idx, image_idx = yolov5_post_async.get_result_npy() # objs:tuple[left, top, right, bottom, class_id, score] 一张图上的多个检测框。
@@ -97,7 +102,6 @@ def yolov5_post(yolov5_post_async,bmcv, output_tensor_map:list, ost_images:list,
         boxes = []
         for idx in range(len(objs)):
             x1, y1, x2, y2, category_id, score = objs[idx]
-            # bbox_dict = [int(round(x1, 3)), int(round(y1, 3)), int(round(x2 - x1, 3)), int(round(y2 - y1, 3))]
             bbox_dict = [align(x1,32),align(y1,2),align((x2-x1),16),align((y2-y1),4)]
             boxes.append(bbox_dict)
             logging.debug("channel_idx is {} image_idx is {},len(objs) is{}".format(channel_idx, image_idx, len(objs)))
@@ -119,12 +123,12 @@ def yolov5_post(yolov5_post_async,bmcv, output_tensor_map:list, ost_images:list,
         for img in croped_list:
             res.append({(channel_idx, image_idx):img})
         
-
+    logging.info("YOLO crop done, time use: {:.2f}s".format(time.time() - crop_time))
     return res 
 
 
 
-def yolov5_process(stop_signal, model_path:str, ipc_image_pipe_name:str, ipc_dist_pipe_name:str, tpu_id:int=0):
+def yolov5_process(stop_signal, ipc_recive_queue_len:int, model_path:str, ipc_image_pipe_name:str, ipc_dist_pipe_name:str, tpu_id:int=0):
 
     """
     函数功能：
@@ -137,8 +141,8 @@ def yolov5_process(stop_signal, model_path:str, ipc_image_pipe_name:str, ipc_dis
     """
 
     # 0 init
-    resize_type = sail.sail_resize_type.BM_PADDING_TPU_LINEAR
-    # resize_type = sail.sail_resize_type.BM_RESIZE_TPU_NEAREST
+    resize_type = sail.sail_resize_type.BM_PADDING_TPU_LINEAR # may rights
+    # resize_type = sail.sail_resize_type.BM_RESIZE_TPU_NEAREST # wrong
     alpha_beta = (1.0/255,0),(1.0/255,0),(1.0/255,0)
 
     engine_image_pre_process = sail.EngineImagePreProcess(model_path, tpu_id, use_mat_output=0) # use_mat_output 是否使用OpenCV的Mat作为图片的输出，默认为False，不使用。
@@ -153,7 +157,7 @@ def yolov5_process(stop_signal, model_path:str, ipc_image_pipe_name:str, ipc_dis
     batch_size = engine_image_pre_process.get_output_shape(output_names[0])[0]
     output_shapes = [engine_image_pre_process.get_output_shape(i) for i in output_names]
     logging.debug('YOLO init engine_image_pre_process output_shapes %s',output_shapes)
-    receive_ipc = sail.IPC(False, ipc_image_pipe_name, ipc_dist_pipe_name, True) # ,10
+    receive_ipc = sail.IPC(False, ipc_image_pipe_name, ipc_dist_pipe_name, True, ipc_recive_queue_len) # ,10
     logging.debug('YOLO RECEIVE IPC INIT')
 
     while not stop_signal.value:

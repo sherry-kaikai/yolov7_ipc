@@ -47,7 +47,7 @@ def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engin
                 print(frame_id)            
             else: 
                 time.sleep(0.001)
-        if frame_id == len(input_paths)*10:
+        if frame_id == len(input_paths)*100:
             stop_signal.value = True
             break
     logging.info('decode done')
@@ -99,12 +99,12 @@ def main(args):
         '''
         单进程，解码器解码16路
         '''
-        input_video = [args.input for _ in range(16)]
-        send_process = multiprocessing.Process(target=multidecoder, args=(input_video, proesss_nums, stop_signal, image_pipe_decode2engine, dist_pipe_decode2engine, args.dev_id, 8)) 
+        input_video = [args.input for _ in range(proesss_nums*4)]
+        send_process = multiprocessing.Process(target=multidecoder, args=(input_video, proesss_nums, stop_signal, image_pipe_decode2engine, dist_pipe_decode2engine, args.dev_id, args.multidecode_max_que_size)) 
         '''
         4进程，每个进程4batch
         '''
-        receive = [multiprocessing.Process(target=yolov5_process,args=(stop_signal,args.yolo_bmodel, image_pipe_decode2engine, dist_pipe_decode2engine,args.dev_id)) for i in range(proesss_nums)]
+        receive = [multiprocessing.Process(target=yolov5_process,args=(stop_signal, args.ipc_recive_queue_len, args.yolo_bmodel, image_pipe_decode2engine, dist_pipe_decode2engine,args.dev_id)) for i in range(proesss_nums)]
         start_time = time.time()
         logging.info(start_time)
 
@@ -145,8 +145,11 @@ def main(args):
 
 def argsparser():
     parser = argparse.ArgumentParser(prog=__file__)
+    parser.add_argument('--multidecode_max_que_size', type=int, default=32, help='multidecode queue')
+    parser.add_argument('--ipc_recive_queue_len', type=int, default=16, help='ipc recive queue')
+    parser.add_argument('--chip_mode', type=str, default='1684x', help='1684x or 1684')
     parser.add_argument('--proesss_nums', type=int, default=4, help='procress nums of process and postprocess')
-    parser.add_argument('--input', type=str, default='../data/licenseplate.mp4', help='path of input, must be video path')
+    parser.add_argument('--input', type=str, default='../data/licenseplate.mp4', help='path of input, must be video path') 
     parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684X/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
     parser.add_argument('--dev_id', type=int, default=0, help='tpu id')
     args = parser.parse_args()
@@ -156,7 +159,10 @@ if __name__ == '__main__':
     args = argsparser()
 
     name_number = args.proesss_nums
-    logging.basicConfig(filename= f'process_is_{name_number}.log',filemode='w',level=logging.DEBUG)
+    chip_mode = args.chip_mode
+    if chip_mode == '1684':
+        args.yolo_bmodel = '../models/yolov5s-licensePLate/BM1684/yolov5s_v6.1_license_3output_int8_4b.bmodel'
+    logging.basicConfig(filename= f'{chip_mode}_process_is_{name_number}.log',filemode='w',level=logging.DEBUG)
     try:
         main(args)
     except Exception as e:
