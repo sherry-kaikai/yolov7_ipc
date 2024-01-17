@@ -35,3 +35,12 @@
     1600/5.4 = 
 
 - soc 1684
+    parser.add_argument('--multidecode_max_que_size', type=int, default=32, help='multidecode queue')
+    parser.add_argument('--ipc_recive_queue_len', type=int, default=16, help='ipc recive queue')
+    把视频换成了VPU能解码的h264 64对齐的，tpu不到100，差不多最高96到98左右
+    1600张图解码，但是应该只crop到1532张图，就按照1600算吧
+    87.4545023 - 76.0292306 = 11.42
+    1600/11.42 = 140 fps
+    一路8.75fps 
+
+

@@ -24,7 +24,7 @@ def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engin
     multiDecoder.set_local_flag(True)
     multiDecoder.set_read_timeout(1) # 设置超时时间1s
 
-    # ipc = sail.IPC(True, image_pipe_decode2engine, dist_pipe_decode2engine, usec2c=True) 
+    ipc = sail.IPC(True, image_pipe_decode2engine, dist_pipe_decode2engine, usec2c=True) 
     logging.info('multidecoder ipc init success')
 
     if isinstance(input_paths, list):# 多路视频，str地址放在一个list
@@ -41,7 +41,7 @@ def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engin
             ret = multiDecoder.read(int(key),bmimg,read_mode = 1) 
 
             if ret == 0:
-                # ipc.sendBMImage(bmimg, key, frame_id)
+                ipc.sendBMImage(bmimg, key, frame_id)
                 frame_id +=1
                 logging.info("decode channel and sent to ipc done, channle id is %d, frameid is %d",key,frame_id)
                 print(frame_id)            
@@ -149,7 +149,7 @@ def argsparser():
     parser.add_argument('--ipc_recive_queue_len', type=int, default=16, help='ipc recive queue')
     parser.add_argument('--chip_mode', type=str, default='1684x', help='1684x or 1684')
     parser.add_argument('--proesss_nums', type=int, default=4, help='procress nums of process and postprocess')
-    parser.add_argument('--input', type=str, default='../data/licenseplate.mp4', help='path of input, must be video path') 
+    parser.add_argument('--input', type=str, default='/data/licenseplate_640516-h264.mp4', help='path of input, must be video path') 
     parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684X/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
     parser.add_argument('--dev_id', type=int, default=0, help='tpu id')
     args = parser.parse_args()
