@@ -139,6 +139,10 @@ def yolov5_process(stop_signal, ipc_recive_queue_len:int, model_path:str, ipc_im
     ipc_image_pipe_name:str, ipc_dist_pipe_name:str: for init recive ipc,and get data from one ipc
     tpu_id: infer on which tpu
     """
+    while True:
+        time.sleep(0.01)
+        logging.debug("!!!!!!!!!!!!!!!!!!!!!!i am alive!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        
 
     # 0 init
     resize_type = sail.sail_resize_type.BM_PADDING_TPU_LINEAR # may rights

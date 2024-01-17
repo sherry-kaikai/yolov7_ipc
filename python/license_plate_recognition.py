@@ -24,7 +24,7 @@ def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engin
     multiDecoder.set_local_flag(True)
     multiDecoder.set_read_timeout(1) # 设置超时时间1s
 
-    ipc = sail.IPC(True, image_pipe_decode2engine, dist_pipe_decode2engine, usec2c=True) 
+    # ipc = sail.IPC(True, image_pipe_decode2engine, dist_pipe_decode2engine, usec2c=True) 
     logging.info('multidecoder ipc init success')
 
     if isinstance(input_paths, list):# 多路视频，str地址放在一个list
@@ -41,7 +41,7 @@ def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engin
             ret = multiDecoder.read(int(key),bmimg,read_mode = 1) 
 
             if ret == 0:
-                ipc.sendBMImage(bmimg, key, frame_id)
+                # ipc.sendBMImage(bmimg, key, frame_id)
                 frame_id +=1
                 logging.info("decode channel and sent to ipc done, channle id is %d, frameid is %d",key,frame_id)
                 print(frame_id)            
