@@ -145,7 +145,7 @@ def main(args):
 
 def argsparser():
     parser = argparse.ArgumentParser(prog=__file__)
-    parser.add_argument('--multidecode_max_que_size', type=int, default=32, help='multidecode queue')
+    parser.add_argument('--multidecode_max_que_size', type=int, default=16, help='multidecode queue')
     parser.add_argument('--ipc_recive_queue_len', type=int, default=16, help='ipc recive queue')
     parser.add_argument('--chip_mode', type=str, default='1684x', help='1684x or 1684')
     parser.add_argument('--proesss_nums', type=int, default=4, help='procress nums of process and postprocess')

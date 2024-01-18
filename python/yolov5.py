@@ -18,21 +18,24 @@ def yolov5_pre_infer(engine_image_pre_process, channel_id_list, frame_id_list, b
     
     for i in range(len(bmi_list)):
         bmi = bmi_list[i]
-        logging.info("pushdata start, bmimg w is {}, h is {} ".format(bmi.width(),bmi.height()) )
+        logging.info("pushdata start, bmimg w is {}, h is {}, len(bm_list) is {}".format(bmi.width(),bmi.height(),len(bmi_list)) )
         ret = engine_image_pre_process.PushImage(channel_id_list[i], frame_id_list[i], bmi)
         while(ret != 0): # 如果push失败，等待
             logging.info("Porcess[{}]:[{}]PreProcessAndInference Thread Full, sleep: 10ms!".format(channel_id_list[i],frame_id_list[i]))
             time.sleep(0.01)
 
-    logging.info("pushdata exit, time use: {:.2f}s".format(time.time()-time_start))
+    logging.info("pushdata exit, time use: {:.4f}s".format(time.time()-time_start))
 
-    res = engine_image_pre_process.GetBatchData(True)
-    logging.info("YOLO pre and process done, time use: {:.2f}s".format(time.time()-time_start))
+    get_batch_data_time = time.time()
+    # res = engine_image_pre_process.GetBatchData(False)  # with out  d2s
+    res = engine_image_pre_process.GetBatchData(True)   # d2s
+    logging.info("YOLO pre and process done,with out d2s, get one batch data time use: {:.4f}s".format(time.time()-get_batch_data_time))
+    logging.info("YOLO pre and process done,with out d2s, total time use: {:.4f}s".format(time.time()-time_start))
     return  res # output_tensor_map, ost_images, channel_list, imageidx_list, padding_atrr
 
 
 
-def yolov5_post(yolov5_post_async,bmcv, output_tensor_map:list, ost_images:list, channel_list:list, imageidx_list:list, padding_atrr:list, batch_size:int, dete_threshold = 0.65, nms_threshold = 0.6, tpu_id = 0):
+def yolov5_post(yolov5_post_async,bmcv, output_tensor_map:list, ost_images:list, channel_list:list, imageidx_list:list, padding_atrr:list, batch_size:int, dete_threshold = 0.8, nms_threshold = 0.6, tpu_id = 0):
     '''
     功能：
         调用sail.algo_yolov5_post_cpu_opt_async 进行批后处理，一次处理一个batch的图片，并将小图从原图中crop出来。
@@ -141,7 +144,7 @@ def yolov5_process(stop_signal, ipc_recive_queue_len:int, model_path:str, ipc_im
     """
 
     # 0 init
-    resize_type = sail.sail_resize_type.BM_PADDING_TPU_LINEAR # may rights
+    resize_type = sail.sail_resize_type.BM_PADDING_TPU_LINEAR # may right
     # resize_type = sail.sail_resize_type.BM_RESIZE_TPU_NEAREST # wrong
     alpha_beta = (1.0/255,0),(1.0/255,0),(1.0/255,0)
 
