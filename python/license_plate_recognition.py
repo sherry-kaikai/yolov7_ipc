@@ -3,16 +3,15 @@ import numpy as np
 
 import time
 import os
-import json
-import queue
+
 import argparse
-from multiprocessing import Process
+# from multiprocessing import Process
 import logging
 import multiprocessing
 import sys
 import traceback
 
-from yolov5 import yolov5_process
+
 '''
 sail.multi解码视频流
 '''
@@ -195,18 +194,18 @@ def main(args):
         
 
         '''
-        test1
+        test1 单进程
         '''
         # start(args.dev_id,0,input_videos, args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)
 
         '''
-        test2 多进程
+        test2 多进程error class 放在外面不行
         '''
         # decode_yolo = multidecoder_Yolov5(0,input_videos,args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)
         # decode_yolo_processes = [multiprocessing.Process(target=decode_yolo.process) for i in range(process_nums) ]
         
         '''
-        test3 class 放在外面好像不行？
+        test3 class 放在外面不行
         '''
         decode_yolo_processes = [multiprocessing.Process(target=start,args=(args.dev_id,i,input_videos, args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)) for i in range(process_nums) ]
         for i in decode_yolo_processes:
