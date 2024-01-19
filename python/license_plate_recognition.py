@@ -176,6 +176,11 @@ def kill_child_processes(parent_pid, sig=signal.SIGTERM):
             print(f"无法终止子进程 {pid}：{e}")
 
 
+
+def start(tpuid,input_videos,yolo_bmodel,loops,multidecode_max_que_size,dete_threshold,nms_threshold):
+    decode_yolo = multidecoder_Yolov5(tpuid,input_videos,yolo_bmodel,loops,multidecode_max_que_size,dete_threshold,nms_threshold)
+    decode_yolo.process()
+
 def main(args):
     try:
 
@@ -185,8 +190,8 @@ def main(args):
         process_nums = int(args.video_nums/args.batch_size)
         input_videos = [args.input for _ in range(process_nums)]
 
-        decode_yolo = multidecoder_Yolov5(0,input_videos,args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)
-        start_time = time.time()
+        
+        
 
         '''
         test1
@@ -196,13 +201,21 @@ def main(args):
         '''
         test2 多进程
         '''
-        decode_yolo_processes = [multiprocessing.Process(target=decode_yolo.process) for i in range(process_nums) ]
-        # 
-        logging.info(start_time)
+        # decode_yolo = multidecoder_Yolov5(0,input_videos,args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)
+        # decode_yolo_processes = [multiprocessing.Process(target=decode_yolo.process) for i in range(process_nums) ]
+        
+        '''
+        test3 class 放在外面好像不行？
+        '''
+        decode_yolo_processes = [multiprocessing.Process(target=start,args=(0,input_videos, args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)) for i in range(process_nums) ]
+
+        
 
         for i in decode_yolo_processes:
             i.start()
             logging.debug('start decode and yolo process')
+        start_time = time.time()
+        logging.info(start_time)
         for i in decode_yolo_processes:
             i.join()
             logging.debug('DONE decode and yolo process')
@@ -211,15 +224,15 @@ def main(args):
 
         total_time = time.time() - start_time
         logging.info('total time {}'.format(total_time))
-        # logging.info('total fps %.2f'% (total_time/(args.loops*args.proesss_nums)))
+        logging.info('total fps %.4f'% ((args.loops*args.video_nums)/total_time))
 
-        # try:
-        #     # os.kill(os.getpid(),9)
-        #     parent_pid = os.getpid()
-        #     # 终止当前程序运行带来的所有子进程
-        #     kill_child_processes(parent_pid)
-        # except:
-        #     pass
+        try:
+            # os.kill(os.getpid(),9)
+            parent_pid = os.getpid()
+            # 终止当前程序运行带来的所有子进程
+            kill_child_processes(parent_pid)
+        except:
+            pass
 
     
     except Exception as e:
@@ -239,7 +252,7 @@ def argsparser():
     parser.add_argument('--chip_mode', type=str, default='1684x', help='1684x or 1684')
     parser.add_argument('--video_nums', type=int, default=16, help='procress nums of input')
     parser.add_argument('--batch_size', type=int, default=4, help='video_nums/batch_size is procress nums of process and postprocess')
-    parser.add_argument('--loops', type=int, default=10, help='process loops for one video')
+    parser.add_argument('--loops', type=int, default=100, help='process loops for one video')
     parser.add_argument('--input', type=str, default='/data/licenseplate_640516-h264.mp4', help='path of input, must be video path') 
     parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684X/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
     parser.add_argument('--dev_id', type=int, default=0, help='tpu id')
