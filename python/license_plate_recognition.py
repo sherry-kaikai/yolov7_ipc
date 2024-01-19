@@ -18,7 +18,8 @@ sail.multi解码视频流
 '''
 
 class multidecoder_Yolov5(object):
-    def __init__(self, tpu_id, video_paths, model_path, loops:int = 100, max_que_size:int = 4, dete_threshold = 0.65, nms_threshold = 0.65):
+    def __init__(self, tpu_id, process_id, video_paths, model_path, loops:int = 100, max_que_size:int = 4, dete_threshold = 0.65, nms_threshold = 0.65):
+        self.process_id = process_id
         self.frame_id = 0   
         self.loops = loops*len(video_paths)
         self.channel_list = {}
@@ -31,7 +32,7 @@ class multidecoder_Yolov5(object):
         if isinstance(video_paths, list):
             for input_path in video_paths:
                 channel_index = self.multiDecoder.add_channel(input_path) # 不丢帧
-                logging.info("Add Channel[{}]: {}".format(channel_index, input_path))
+                logging.info("Process {} ,Add Channel[{}]: {}".format(self.process_id,channel_index, input_path))
                 self.channel_list[channel_index] = input_path
 
         self.stop_signal = False
@@ -50,7 +51,7 @@ class multidecoder_Yolov5(object):
         output_names = self.engine_image_pre_process.get_output_names()
         self.batch_size = self.engine_image_pre_process.get_output_shape(output_names[0])[0]
         output_shapes = [self.engine_image_pre_process.get_output_shape(i) for i in output_names]
-        logging.debug('YOLO RECEIVE IPC INIT DONE,bmodel output_shapes %s',output_shapes)
+        logging.debug('Process {},YOLO RECEIVE IPC INIT DONE,bmodel output_shapes {}'.format(self.process_id,output_shapes))
         
         self.dete_thresholds = dete_threshold*np.ones(self.batch_size,dtype=np.float32)
         self.nms_thresholds = nms_threshold*np.ones(self.batch_size,dtype=np.float32)
@@ -70,9 +71,9 @@ class multidecoder_Yolov5(object):
                 self.frame_id +=1
                 ret = self.engine_image_pre_process.PushImage(key, self.frame_id, bmimg)
                 if ret == 0:
-                    logging.info("decode channel and sent to engine_image_pre_process done, channle id is %d, frameid is %d",key,self.frame_id)
+                    logging.info("Process %d,decode channel and sent to engine_image_pre_process done, channle id is %d, frameid is %d",self.process_id,key,self.frame_id)
                 else:
-                    logging.error("sent to engine_image_pre_process ERROR, channle id is %d, frameid is %d",key,self.frame_id)
+                    logging.error("Process %d,sent to engine_image_pre_process ERROR, channle id is %d, frameid is %d",self.process_id,key,self.frame_id)
                     time.sleep(0.001)
             else: 
                 time.sleep(0.001)
@@ -89,7 +90,7 @@ class multidecoder_Yolov5(object):
 
         # 0 获取推理后的batch数据
         output_tensor_map, ost_images, channel_list, imageidx_list, padding_atrr = self.engine_image_pre_process.GetBatchData(True) # d2s
-        logging.info("YOLO pre and process done,with out d2s, get one batch data time use: {:.4f}s".format(time.time()-get_batch_data_time))
+        logging.info("Process {},YOLO pre and process done,with out d2s, get one batch data time use: {:.4f}s".format(self.process_id,time.time()-get_batch_data_time))
 
         # 处理数据
         width_list = []
@@ -105,11 +106,11 @@ class multidecoder_Yolov5(object):
         start_time = time.time()
         ret = self.yolov5_post_async.push_data(channel_list, imageidx_list, output_tensor_map, self.dete_thresholds, self.nms_thresholds, width_list, height_list, padding_atrr)
         if ret == 0:
-            logging.debug("push data to YOLO postprocess SUCCESS, ret: {}".format(ret))
+            logging.debug("Process {},push data to YOLO postprocess SUCCESS, ret: {}".format(self.process_id,ret))
         else:
-            logging.error("push data to YOLO postprocess FAIL, ret: {}".format(ret))
+            logging.error("Process {},push data to YOLO postprocess FAIL, ret: {}".format(self.process_id,ret))
             time.sleep(0.001)
-        logging.info("YOLO postprocess done, time use: {:.2f}s".format(time.time() - start_time))
+        logging.info("Process {},YOLO postprocess push data done, time use: {:.2f}s".format(self.process_id,time.time() - start_time))
 
         # 2 得到后处理的一张图的结果，并做crop
         crop_time = time.time()
@@ -123,20 +124,20 @@ class multidecoder_Yolov5(object):
                 # bbox_dict = [align(x1,2),align(y1,2),align((x2-x1),2),align((y2-y1),2)]
                 bbox_dict = [int(x1),int(y1),int(x2-x1),int(y2-y1)]
                 boxes.append(bbox_dict)
-                logging.debug("channel_idx is {} image_idx is {},len(objs) is{}".format(channel_idx, image_idx, len(objs)))
+                logging.debug("Process {},channel_idx is {} image_idx is {},len(objs) is{}".format(self.process_id,channel_idx, image_idx, len(objs)))
                 logging.debug(bbox_dict)
-                logging.info("YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :%s",objs[idx])
+                logging.info("Process %d,YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :%s",self.process_id,objs[idx])
 
             # crop
             croped_list = []
             for box in boxes:
                 croped_list.append(self.bmcv.crop(image_dict[(channel_idx,image_idx)],box[0],box[1],box[2],box[3]))
 
-            logging.info("image {} CROP DONE! ".format(image_idx))
+            logging.info("Process %d,image {} CROP DONE! ".format(image_idx))
             for img in croped_list:
                 res.append({(channel_idx, image_idx):img})
             
-        logging.info("YOLO crop done, time use: {:.2f}s".format(time.time() - crop_time))
+        logging.info("Process {},YOLO crop all done, time use: {:.2f}s".format(self.process_id,time.time() - crop_time))
         return res 
 
     def process(self):
@@ -144,12 +145,12 @@ class multidecoder_Yolov5(object):
         while not self.stop_signal:
             self.multidecoder_pushdata()
             croped_list = self.inference_and_postprocess()
-            logging.info("YOLO process done, %s,",croped_list,)
-            logging.info('!!!!!!!!!process {} loops done,total loops is{}'.format(self.frame_id,self.loops))
+            logging.info("Process %d,YOLO process done, %s,",self.process_id,croped_list)
+            logging.info('Process {},!!!!!!!!!process {} loops done,total loops is{}'.format(self.process_id,self.frame_id,self.loops))
 
             if self.frame_id == self.loops:
                 self.stop_signal = True
-                logging.info('!!!!!!!!!process {} loops done,total loops is{}'.format(self.frame_id,self.loops))
+                logging.info('Process {},!!!!!!!!!process {} loops done,total loops is{}'.format(self.process_id,self.frame_id,self.loops))
                 break
         try:
             sys.exit(0)  # 正常退出，退出状态码为0
@@ -177,8 +178,8 @@ def kill_child_processes(parent_pid, sig=signal.SIGTERM):
 
 
 
-def start(tpuid,input_videos,yolo_bmodel,loops,multidecode_max_que_size,dete_threshold,nms_threshold):
-    decode_yolo = multidecoder_Yolov5(tpuid,input_videos,yolo_bmodel,loops,multidecode_max_que_size,dete_threshold,nms_threshold)
+def start(tpuid,process_id,input_videos,yolo_bmodel,loops,multidecode_max_que_size,dete_threshold,nms_threshold):
+    decode_yolo = multidecoder_Yolov5(tpuid,process_id,input_videos,yolo_bmodel,loops,multidecode_max_que_size,dete_threshold,nms_threshold)
     decode_yolo.process()
 
 def main(args):
@@ -196,7 +197,7 @@ def main(args):
         '''
         test1
         '''
-        # decode_yolo.process()
+        # start(args.dev_id,0,input_videos, args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)
 
         '''
         test2 多进程
@@ -207,10 +208,7 @@ def main(args):
         '''
         test3 class 放在外面好像不行？
         '''
-        decode_yolo_processes = [multiprocessing.Process(target=start,args=(0,input_videos, args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)) for i in range(process_nums) ]
-
-        
-
+        decode_yolo_processes = [multiprocessing.Process(target=start,args=(args.dev_id,i,input_videos, args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)) for i in range(process_nums) ]
         for i in decode_yolo_processes:
             i.start()
             logging.debug('start decode and yolo process')
@@ -224,8 +222,8 @@ def main(args):
 
         total_time = time.time() - start_time
         logging.info('total time {}'.format(total_time))
-        logging.info('total fps %.4f'% ((args.loops*args.video_nums)/total_time))
-
+        logging.info('loop is %d ,total frame is %d, fps is %.4f'% (args.loops,args.loops*args.video_nums,(args.loops*args.video_nums)/total_time))
+        print('loop is %d ,total frame is %d, fps is %.4f'% (args.loops,args.loops*args.video_nums,(args.loops*args.video_nums)/total_time))
         try:
             # os.kill(os.getpid(),9)
             parent_pid = os.getpid()
