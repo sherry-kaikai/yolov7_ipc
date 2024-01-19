@@ -147,7 +147,7 @@ def argsparser():
     parser = argparse.ArgumentParser(prog=__file__)
     parser.add_argument('--multidecode_max_que_size', type=int, default=16, help='multidecode queue')
     parser.add_argument('--ipc_recive_queue_len', type=int, default=16, help='ipc recive queue')
-    parser.add_argument('--chip_mode', type=str, default='1684x', help='1684x or 1684')
+    parser.add_argument('--chip_mode', type=str, default='1684x', help='1684x or 1684') # only for developer test
     parser.add_argument('--proesss_nums', type=int, default=4, help='procress nums of process and postprocess')
     parser.add_argument('--input', type=str, default='/data/licenseplate_640516-h264.mp4', help='path of input, must be video path') 
     parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684X/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
@@ -160,8 +160,10 @@ if __name__ == '__main__':
 
     name_number = args.proesss_nums
     chip_mode = args.chip_mode
-    if chip_mode == '1684':
+
+    if chip_mode == '1684': # only for developer test
         args.yolo_bmodel = '../models/yolov5s-licensePLate/BM1684/yolov5s_v6.1_license_3output_int8_4b.bmodel'
+    
     logging.basicConfig(filename= f'{chip_mode}_process_is_{name_number}.log',filemode='w',level=logging.DEBUG)
     try:
         main(args)
