@@ -8,33 +8,27 @@ import traceback
 
 
 
-class multidecoder_Yolov5(object):
-    def __init__(self, tpu_id, process_id, video_paths, model_path, ipc_image_pipe_name:str, ipc_dist_pipe_name:str, loops:int = 100, 
-                 max_que_size:int = 16, ipc_recive_queue_len:int = 16,post_queue_len:int=10,dete_threshold = 0.65, nms_threshold = 0.65,yolov5_network_w:int=640,yolov5_network_h:int=640):
+class Yolov5(object):
+    def __init__(self,stop_signal, tpu_id, process_id,  model_path:str, ipc_image_pipe_name:str, ipc_dist_pipe_name:str, loops:int = 100, 
+                 ipc_recive_queue_len:int = 16,post_queue_len:int=10,dete_threshold = 0.65, nms_threshold = 0.65,yolov5_network_w:int=640,yolov5_network_h:int=640):
         
-        self.receive_ipc = sail.IPC(False, ipc_image_pipe_name, ipc_dist_pipe_name, True, ipc_recive_queue_len) # ,10
+        self.ipc_image_pipe_name = ipc_image_pipe_name
+        self.ipc_dist_pipe_name = ipc_dist_pipe_name
+        self.ipc_recive_queue_len = ipc_recive_queue_len
+        # self.receive_ipc = sail.IPC(False, ipc_image_pipe_name, ipc_dist_pipe_name, True, ipc_recive_queue_len) 
         self.process_id = process_id
         self.frame_id = 0   
-        self.loops = loops*len(video_paths)
+        # self.loops = loops*len(video_paths)
         self.channel_list = {}
-        self.multiDecoder = sail.MultiDecoder(max_que_size, tpu_id)
-        self.multiDecoder.set_local_flag(True)
-        self.multiDecoder.set_read_timeout(1) # 设置超时时间1s
+
         logging.info('multidecoder INIT DONE')
 
-
-        if isinstance(video_paths, list):
-            for input_path in video_paths:
-                channel_index = self.multiDecoder.add_channel(input_path) # 不丢帧
-                logging.info("Process {} ,Add Channel[{}]: {}".format(self.process_id,channel_index, input_path))
-                self.channel_list[channel_index] = input_path
-
-        self.stop_signal = False
+        self.stop_signal = stop_signal
 
         resize_type = sail.sail_resize_type.BM_PADDING_TPU_LINEAR # 需要选择正确的resizetype，否则检测结果错误
         alpha_beta = (1.0/255,0),(1.0/255,0),(1.0/255,0)
 
-        self.engine_image_pre_process = sail.EngineImagePreProcess(model_path, tpu_id, use_mat_output=0) # use_mat_output 是否使用OpenCV的Mat作为图片的输出，默认为False，不使用。
+        self.engine_image_pre_process = sail.EngineImagePreProcess(model_path, tpu_id, use_mat_output=False) # use_mat_output 是否使用OpenCV的Mat作为图片的输出，默认为False，不使用。
         self.engine_image_pre_process.InitImagePreProcess(resize_type, True, 10, 10)
         self.engine_image_pre_process.SetPaddingAtrr()
         self.engine_image_pre_process.SetConvertAtrr(alpha_beta)
@@ -64,7 +58,6 @@ class multidecoder_Yolov5(object):
             通过sail.Engine_image_pre_process对传入的传入长度为4的bmimage_list进行预处理和推理处理。
         
         参数：
-            engine_image_pre_process: This is a sail method that has been initialized
             channel_id_list:传入长度为4的bmimage_list的通道号
             frame_id_list:传入长度为4的bmimage_list的图像号
             bmi_list:传入长度为4的bmimage
@@ -91,7 +84,7 @@ class multidecoder_Yolov5(object):
 
 
 
-    def yolov5_post(self, output_tensor_map:list, ost_images:list, channel_list:list, imageidx_list:list, padding_atrr:list, batch_size:int):
+    def yolov5_post(self, output_tensor_map:list, ost_images:list, channel_list:list, imageidx_list:list, padding_atrr:list):
         '''
         功能：
             调用sail.algo_yolov5_post_cpu_opt_async 进行批后处理，一次处理一个batch的图片，并将检测出的小图从原图中crop出来
@@ -112,10 +105,6 @@ class multidecoder_Yolov5(object):
             channel_list:list[int]: 结果对应的原始图片的通道序列。
             imageidx_list:list[int]:结果对应的原始图片的编号序列。
             padding_atrr:list[list[int]]:填充图像的属性列表，填充的起始点坐标x、起始点坐标y、尺度变换之后的宽度、尺度变换之后的高度
-            batch_size:int: 输入batch，确保输入的output_tensor_map的长度是bmodel的一个batch
-            dete_threshold = 0.01:
-            nms_threshold = 0.6:
-            tpu_id = 0:
 
         返回值：
             裁剪后的小图 格式为list[dict{(cid,frame_id):croped_images}]    (？这里要返回原始大图吗？)
@@ -152,7 +141,7 @@ class multidecoder_Yolov5(object):
         # 2 得到后处理的一张图的结果，并做crop
         crop_time = time.time()
         res = []
-        for _ in range(batch_size):
+        for _ in range(self.batch_size):
             objs, channel_idx, image_idx = self.yolov5_post_async.get_result_npy() # objs:tuple[left, top, right, bottom, class_id, score] 一张图上的多个检测框
 
             boxes = []
@@ -179,19 +168,17 @@ class multidecoder_Yolov5(object):
 
 
 
-    def yolov5_process(self, stop_signal):
+    def yolov5_process(self):
 
         """
         函数功能：
         this funcition is a complete flow for yolov5 process. 
 
         参数：
-        model_path: bmdoel path, must be 4batch 
-        ipc_image_pipe_name:str, ipc_dist_pipe_name:str: for init recive ipc,and get data from one ipc
-        tpu_id: infer on which tpu
+            stop_signal 多进程共享变量
         """
-
-        while not stop_signal.value:
+        receive_ipc = sail.IPC(False, self.ipc_image_pipe_name, self.ipc_dist_pipe_name, True, self.ipc_recive_queue_len) 
+        while not self.stop_signal.value:
             logging.debug("YOLO process start")
             # 1 get data from ipc and push data to YOLO process
 
@@ -199,7 +186,7 @@ class multidecoder_Yolov5(object):
 
             for i in range(4):
                 try:
-                    bmimg, channel_id, frame_id = self.receive_ipc.receiveBMImage()
+                    bmimg, channel_id, frame_id = receive_ipc.receiveBMImage()
                 except Exception as e:
                     print("An exception occurred:", e)
                     # 打印异常堆栈信息
@@ -213,10 +200,10 @@ class multidecoder_Yolov5(object):
                 logging.debug("YOLO get bmimage from ipc")
 
             # 2 preprocess and infer 
-            output_tensor_map, ost_images, channel_list, imageidx_list, padding_atrr = self.yolov5_pre_infer(self.engine_image_pre_process, channel_id_list, frame_id_list, bmimg_list)
+            output_tensor_map, ost_images, channel_list, imageidx_list, padding_atrr = self.yolov5_pre_infer(channel_id_list, frame_id_list, bmimg_list)
             logging.info("YOLO pre and infer DONE!")
 
-            res = self.yolov5_post(self.yolov5_post_async, self.bmcv, output_tensor_map, ost_images, channel_list, imageidx_list, padding_atrr,batch_size) # res: list[dict{(cid,frame_id):croped_images}]
+            res = self.yolov5_post(output_tensor_map, ost_images, channel_list, imageidx_list, padding_atrr) # res: list[dict{(cid,frame_id):croped_images}]
             logging.info("YOLO post and crop DONE!,len res is %s:",len(res))
         
         

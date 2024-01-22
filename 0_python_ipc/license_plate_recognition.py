@@ -12,11 +12,11 @@ import multiprocessing
 import sys
 import traceback
 
-from yolov5 import yolov5_process
+from yolov5 import Yolov5
 '''
 sail.multi解码视频流
 '''
-def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engine, dist_pipe_decode2engine, tpu_id = 0, max_que_size = 32):
+def multidecoder(input_paths, stop_signal, image_pipe_decode2engine, dist_pipe_decode2engine, tpu_id = 0, max_que_size = 32,loops = 100):
 
     channel_list = {}
 
@@ -47,7 +47,7 @@ def multidecoder(input_paths, proesss_nums, stop_signal, image_pipe_decode2engin
                 print(frame_id)            
             else: 
                 time.sleep(0.001)
-        if frame_id == len(input_paths)*100:
+        if frame_id == len(input_paths)*loops:
             stop_signal.value = True
             break
     logging.info('decode done')
@@ -74,37 +74,50 @@ def kill_child_processes(parent_pid, sig=signal.SIGTERM):
         except Exception as e:
             print(f"无法终止子进程 {pid}：{e}")
 
+
+def start(stop_signal,tpuid,process_id,yolo_bmodel,ipc_image_pipe_name,ipc_dist_pipe_name,loops,ipc_recive_queue_len,post_queue_len,dete_threshold,nms_threshold):
+    decode_yolo = Yolov5(stop_signal,tpuid,process_id,yolo_bmodel,ipc_image_pipe_name,ipc_dist_pipe_name,loops,ipc_recive_queue_len,post_queue_len,dete_threshold,nms_threshold)
+    decode_yolo.yolov5_process()
+
+
 def main(args):
     try:
-        proesss_nums = args.proesss_nums
+        '''
+        多路视频流
+        '''
+        process_nums = int(args.video_nums/args.batch_size)
+        # input_videos = [args.input for _ in range(int(args.video_nums/process_nums))]
+        input_videos = [args.input for _ in range(args.video_nums)]
+
     
         '''
         只使用一个ipc管道
         '''
         image_pipe_decode2engine = "/tmp/img"
         dist_pipe_decode2engine = "/tmp/final"
-        image_pipe_engine2post  = "/tmp/img_engine2post"
-        dist_pipe_engine2post = "/tmp/final_engine2post"
 
 
         # 创建一个共享的布尔变量作为结束信号
         stop_signal = multiprocessing.Value('b', False)
 
+        dete_threshold = 0.65
+        nms_threshold = 0.65
         '''
         4解码进程，一个解码器解码4路
         '''
         # input_video = [args.input for _ in range(proesss_nums)]
         # send_process = [multiprocessing.Process(target=multidecoder, args=(input_video, proesss_nums, stop_signal, image_pipe_decode2engine, dist_pipe_decode2engine, args.dev_id, 8)) for i in range(proesss_nums)]
         
-        '''
-        单进程，解码器解码16路
-        '''
-        input_video = [args.input for _ in range(proesss_nums*4)]
-        send_process = multiprocessing.Process(target=multidecoder, args=(input_video, proesss_nums, stop_signal, image_pipe_decode2engine, dist_pipe_decode2engine, args.dev_id, args.multidecode_max_que_size)) 
+
+
+        send_process = multiprocessing.Process(target=multidecoder, args=(input_videos, stop_signal, \
+                                                                        image_pipe_decode2engine, dist_pipe_decode2engine, args.dev_id, args.multidecode_max_que_size,args.loops)) 
         '''
         4进程，每个进程4batch
         '''
-        receive = [multiprocessing.Process(target=yolov5_process,args=(stop_signal, args.ipc_recive_queue_len, args.yolo_bmodel, image_pipe_decode2engine, dist_pipe_decode2engine,args.dev_id)) for i in range(proesss_nums)]
+        receive = [multiprocessing.Process(target=start,args=(stop_signal,args.dev_id,\
+                                                                i,args.yolo_bmodel,image_pipe_decode2engine,dist_pipe_decode2engine,\
+                                                                args.loops,args.ipc_recive_queue_len,args.post_queue_len,dete_threshold,nms_threshold)) for i in range(process_nums)]
         start_time = time.time()
         logging.info(start_time)
 
@@ -147,24 +160,26 @@ def argsparser():
     parser = argparse.ArgumentParser(prog=__file__)
     parser.add_argument('--multidecode_max_que_size', type=int, default=16, help='multidecode queue')
     parser.add_argument('--ipc_recive_queue_len', type=int, default=16, help='ipc recive queue')
+    parser.add_argument('--post_queue_len', type=int, default=16, help='postprocess queue')
     parser.add_argument('--chip_mode', type=str, default='1684x', help='1684x or 1684') # only for developer test
-    parser.add_argument('--proesss_nums', type=int, default=4, help='procress nums of process and postprocess')
+    parser.add_argument('--video_nums', type=int, default=16, help='procress nums of input')
+    parser.add_argument('--batch_size', type=int, default=4, help='video_nums/batch_size is procress nums of process and postprocess')
     parser.add_argument('--input', type=str, default='/data/licenseplate_640516-h264.mp4', help='path of input, must be video path') 
     parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684X/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
     parser.add_argument('--dev_id', type=int, default=0, help='tpu id')
+    parser.add_argument('--loops', type=int, default=100, help='loops for one video')
     args = parser.parse_args()
     return args
 
 if __name__ == '__main__':
     args = argsparser()
 
-    name_number = args.proesss_nums
     chip_mode = args.chip_mode
 
     if chip_mode == '1684': # only for developer test
         args.yolo_bmodel = '../models/yolov5s-licensePLate/BM1684/yolov5s_v6.1_license_3output_int8_4b.bmodel'
     
-    logging.basicConfig(filename= f'{chip_mode}_process_is_{name_number}.log',filemode='w',level=logging.DEBUG)
+    logging.basicConfig(filename= f'{chip_mode}_process_is_{args.video_nums}.log',filemode='w',level=logging.DEBUG)
     try:
         main(args)
     except Exception as e:
