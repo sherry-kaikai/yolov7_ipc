@@ -1,1 +1,6 @@
 ./data
+./models
+./0_python_ipc/*.log
+./0_python_ipc/__pycache__/
+./1_python_simplist_multiprocess/*.log
+./1_python_simplist_multiprocess/__pycache__/

@@ -9,7 +9,7 @@
 
 
 - 测试数据 
-    - SE5 车牌模型（单类识别） 4batch int8，16路视频，loops=100。fps=126,tpu=100%.
+    - SE5 车牌模型（单类识别） 4batch int8，16路视频，loops=100。fps=126~133,tpu=100%.(但是一直用不太满)
     - SE5 COCO（80类） 4batch int8,16路视频，nms=0.6，dete=0.01，fps=116. dete=0.65，fps=117.
     - SE7 车牌（单类识别） 4batch int8 16路视频。dete 0.65 nms 0.65,  fps250  tpu 80~90% . 
     - SE7 coco（80类）4batch int8 16路视频。dete 0.65 nms 0.65,  fps140  tpu 80~90% . dete 0.01 nms 0.65 fps fps95  tpu 70%

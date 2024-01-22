@@ -40,8 +40,7 @@ class MultiDecoderThread(object):
         self.flag_lock.release()
         return flag_temp
 
-    def InitProcess(self, bmodel_name, process_id,dete_threshold,nms_threshold):
-        self.process_id = process_id
+    def InitProcess(self, bmodel_name,dete_threshold,nms_threshold):
         self.engine_image_pre_process = sail.EngineImagePreProcess(bmodel_name, self.tpu_id, 0)
         self.engine_image_pre_process.InitImagePreProcess(self.resize_type, True, 10, 10)
         self.engine_image_pre_process.SetPaddingAtrr()
@@ -201,8 +200,8 @@ class MultiDecoderThread(object):
         self.flag_lock.release()
 
 def process_demo(tpu_id, max_que_size, video_name_list, bmodel_name, loop_count, process_id,dete_threshold,nms_threshold):
-    process =  MultiDecoderThread(tpu_id, video_name_list, sail.sail_resize_type.BM_RESIZE_TPU_NEAREST, max_que_size, loop_count,process_id)
-    process.InitProcess(bmodel_name,process_id,dete_threshold,nms_threshold)
+    process =  MultiDecoderThread(tpu_id, video_name_list, sail.sail_resize_type.BM_PADDING_TPU_LINEAR, max_que_size, loop_count,process_id)
+    process.InitProcess(bmodel_name,dete_threshold,nms_threshold)
 
 
 def argsparser():
@@ -226,7 +225,7 @@ if __name__ == '__main__':
 
     if args.chip_mode == '1684':
         args.yolo_bmodel = '../models/yolov5s-licensePLate/BM1684/yolov5s_v6.1_license_3output_int8_4b.bmodel'
-    logging.basicConfig(filename= f'{args.chip_mode}_without_ipc_process_is_{args.video_nums}.log',filemode='w',level=logging.DEBUG)
+    logging.basicConfig(filename= f'{args.chip_mode}_yolo_process_and_thread_is_{args.video_nums}.log',filemode='w',level=logging.DEBUG)
 
     # decoder_count = 4           #每个进程解码的路数
     max_que_size = args.multidecode_max_que_size           #缓存的大小
