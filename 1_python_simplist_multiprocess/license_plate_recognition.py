@@ -99,7 +99,7 @@ class multidecoder_Yolov5(object):
             width_list.append(ost_images[i].width())
             height_list.append(ost_images[i].height())
             image_dict[(channel_list[i],imageidx_list[i])] = ost_images[i]
-
+            print(i,len(ost_images))
         
         # 1 后处理
         start_time = time.time()
@@ -188,11 +188,9 @@ def main(args):
         多路视频流
         '''
         process_nums = int(args.video_nums/args.batch_size)
-        input_videos = [args.input for _ in range(process_nums)]
+        input_videos = [args.input for _ in range(int(args.video_nums/process_nums))]
 
         
-        
-
         '''
         test1 单进程
         '''
@@ -205,7 +203,7 @@ def main(args):
         # decode_yolo_processes = [multiprocessing.Process(target=decode_yolo.process) for i in range(process_nums) ]
         
         '''
-        test3 class 放在外面不行
+        test3 class 放在里面
         '''
         decode_yolo_processes = [multiprocessing.Process(target=start,args=(args.dev_id,i,input_videos, args.yolo_bmodel,args.loops,args.multidecode_max_que_size,0.65,0.65)) for i in range(process_nums) ]
         for i in decode_yolo_processes:

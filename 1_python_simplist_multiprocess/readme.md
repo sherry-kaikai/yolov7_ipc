@@ -15,3 +15,4 @@
     - SE7 coco（80类）4batch int8 16路视频。dete 0.65 nms 0.65,  fps140  tpu 80~90% . dete 0.01 nms 0.65 fps fps95  tpu 70%
 
 
+    - SE5 车牌模型（单类识别）4batch int8 ,loops 100, 4路视频。fps=70，tpu=60%
