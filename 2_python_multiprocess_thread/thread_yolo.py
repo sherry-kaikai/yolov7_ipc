@@ -7,6 +7,8 @@ import queue
 from multiprocessing import Process
 import argparse
 import logging
+import lprnet  
+
 
 class MultiDecoderThread(object):
     def __init__(self, tpu_id, video_list, resize_type:sail.sail_resize_type, max_que_size:int, loop_count:int,process_id:int):
@@ -40,8 +42,8 @@ class MultiDecoderThread(object):
         self.flag_lock.release()
         return flag_temp
 
-    def InitProcess(self, bmodel_name,dete_threshold,nms_threshold):
-        self.engine_image_pre_process = sail.EngineImagePreProcess(bmodel_name, self.tpu_id, 0)
+    def InitProcess(self, yolo_bmodel,lprnet_bmodel,dete_threshold,nms_threshold):
+        self.engine_image_pre_process = sail.EngineImagePreProcess(yolo_bmodel, self.tpu_id, 0)
         self.engine_image_pre_process.InitImagePreProcess(self.resize_type, True, 10, 10)
         self.engine_image_pre_process.SetPaddingAtrr()
         self.engine_image_pre_process.SetConvertAtrr(self.alpha_beta)
@@ -54,6 +56,9 @@ class MultiDecoderThread(object):
         logging.debug('Process {},YOLO RECEIVE IPC INIT DONE,bmodel output_shapes {}'.format(self.process_id,output_shapes))
         self.yolov5_post_async = sail.algo_yolov5_post_cpu_opt_async([output_shapes[0],output_shapes[1],output_shapes[2]],640,640,10)
         self.bmcv = sail.Bmcv(sail.Handle(0))
+
+        self.lprnet = lprnet.LPRNet(lprnet_bmodel,self.tpu_id)
+
 
         thread_preprocess = threading.Thread(target=self.decoder_and_pushdata, args=(self.channel_list, self.multiDecoder, self.engine_image_pre_process))
         thread_inference = threading.Thread(target=self.Inferences_thread, args=(self.resize_type, self.tpu_id, self.post_que, self.image_que))
@@ -124,10 +129,11 @@ class MultiDecoderThread(object):
                     if self.get_exit_flag():
                         break
                     continue 
-                img_queue.put(ost_images[index])
+                img_queue.put({(channel,imageidx_list[index]):ost_images[index]}) 
+                logging.debug("put ost img to queue,  cid is {},frameid is{}".format(channel,imageidx_list[index]))
 
             end_time = time.time()
-            print("GetBatchData time use: {:.2f} ms".format((end_time-start_time)*1000))
+            logging.info("Engine_image_pre_process GetBatchData time use: {:.2f} ms".format((end_time-start_time)*1000))
         
         print("Inferences_thread thread exit!")
 
@@ -163,14 +169,45 @@ class MultiDecoderThread(object):
         total_count = 0
         start_time = time.time()
         while (True):
+            # if self.get_exit_flag():
+            #     break
             if img_queue.empty():
                 time.sleep(0.01)
                 continue
-            ocv_image = img_queue.get(True)
-            objs, channel, image_idx = self.yolov5_post_async.get_result_npy()
-            for obj in objs:
-                logging.info("Process %d,YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :%s",self.process_id,obj)
+            ocv_image = img_queue.get(True) # 此时的ostimags 和结果是一一对应的吗？4b的也是一一对应的吗。
+            objs, channel, image_idx = self.yolov5_post_async.get_result_npy() #yolov5_post_async.get_result_npy()是单输出。
 
+            ''' test1'''
+            # croped_images = []
+            # for obj in objs:
+            #     x1, y1, x2, y2, category_id, score = obj
+
+            #     logging.debug("Process {},channel_idx is {} image_idx is {},len(objs) is{}".format(self.process_id,channel, image_idx, len(objs)))
+            #     logging.info("Process %d,YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :%s",self.process_id,obj)
+                
+                
+            #     croped_images.append(self.bmcv.crop(ocv_image[(channel, image_idx)],int(x1),int(y1),int(x2-x1),int(y2-y1)))
+            # logging.debug("Process {},CROP DONE! ,ocv image{},len croped images {}".format(self.process_id,ocv_image,len(croped_images)))
+
+
+            # res_list = self.lprnet(croped_images)
+            # logging.info("Process {},LPRNET process DONE!,res is {}".format(self.process_id,res_list))
+
+            ''' test2'''
+
+
+            for obj in objs:
+                x1, y1, x2, y2, category_id, score = obj
+
+                logging.debug("Process {},channel_idx is {} image_idx is {},len(objs) is{}".format(self.process_id,channel, image_idx, len(objs)))
+                logging.info("Process %d,YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :%s",self.process_id,obj)
+                
+                
+                croped = self.bmcv.crop(ocv_image[(channel, image_idx)],int(x1),int(y1),int(x2-x1),int(y2-y1))
+                res= self.lprnet(croped)
+                logging.info("Process {},LPRNET process DONE!,res is {}".format(self.process_id,res))
+
+            
                 # bmcv.rectangle(ocv_image, obj[0], obj[1], obj[2]-obj[0], obj[3]-obj[1],(0,0,255),2)
             # image = sail.BMImage(handle,ocv_image.height(),ocv_image.width(),sail.Format.FORMAT_YUV420P,sail.ImgDtype.DATA_TYPE_EXT_1N_BYTE)
             # bmcv.convert_format(ocv_image,image)
@@ -181,6 +218,7 @@ class MultiDecoderThread(object):
 
             total_count += 1
             if self.loop_count <=  total_count:
+                logging.debug("LOOPS DONE")
                 break
         end_time = time.time()
         time_use = (end_time-start_time)*1000
@@ -199,21 +237,21 @@ class MultiDecoderThread(object):
         self.exit_flag = True
         self.flag_lock.release()
 
-def process_demo(tpu_id, max_que_size, video_name_list, bmodel_name, loop_count, process_id,dete_threshold,nms_threshold):
+def process_demo(tpu_id, max_que_size, video_name_list, yolo_bmodel,lprnet_bmodel, loop_count, process_id,dete_threshold,nms_threshold):
     process =  MultiDecoderThread(tpu_id, video_name_list, sail.sail_resize_type.BM_PADDING_TPU_LINEAR, max_que_size, loop_count,process_id)
-    process.InitProcess(bmodel_name,dete_threshold,nms_threshold)
+    process.InitProcess(yolo_bmodel,lprnet_bmodel,dete_threshold,nms_threshold)
 
 
 def argsparser():
     parser = argparse.ArgumentParser(prog=__file__)
     parser.add_argument('--multidecode_max_que_size', type=int, default=16, help='multidecode queue')
     parser.add_argument('--ipc_recive_queue_len', type=int, default=16, help='ipc recive queue')
-    parser.add_argument('--chip_mode', type=str, default='1684x', help='1684x or 1684')
     parser.add_argument('--video_nums', type=int, default=16, help='procress nums of input')
     parser.add_argument('--batch_size', type=int, default=4, help='video_nums/batch_size is procress nums of process and postprocess')
-    parser.add_argument('--loops', type=int, default=1000, help='process loops for one video')
+    parser.add_argument('--loops', type=int, default=100, help='process loops for one video')
     parser.add_argument('--input', type=str, default='/data/licenseplate_640516-h264.mp4', help='path of input, must be video path') 
-    parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684X/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
+    parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
+    parser.add_argument('--lprnet_bmodel', type=str, default='../models/lprnet/BM1684/lprnet_int8_1b.bmodel', help='path of bmodel')
     parser.add_argument('--dev_id', type=int, default=0, help='tpu id')
 
     args = parser.parse_args()
@@ -223,9 +261,7 @@ if __name__ == '__main__':
 
     args = argsparser()
 
-    if args.chip_mode == '1684':
-        args.yolo_bmodel = '../models/yolov5s-licensePLate/BM1684/yolov5s_v6.1_license_3output_int8_4b.bmodel'
-    logging.basicConfig(filename= f'{args.chip_mode}_yolo_process_and_thread_is_{args.video_nums}.log',filemode='w',level=logging.DEBUG)
+    logging.basicConfig(filename= f'1684_yolo_process_and_video_thread_is_{args.video_nums}.log',filemode='w',level=logging.DEBUG)
 
     # decoder_count = 4           #每个进程解码的路数
     max_que_size = args.multidecode_max_que_size           #缓存的大小
@@ -240,7 +276,7 @@ if __name__ == '__main__':
 
     dete_threshold,nms_threshold = 0.65,0.65
 
-    decode_yolo_processes = [Process(target=process_demo,args=(args.dev_id, max_que_size, input_videos, args.yolo_bmodel, loop_count, i,dete_threshold,nms_threshold)) for i in range(process_nums) ]
+    decode_yolo_processes = [Process(target=process_demo,args=(args.dev_id, max_que_size, input_videos, args.yolo_bmodel,args.lprnet_bmodel, loop_count, i,dete_threshold,nms_threshold)) for i in range(process_nums) ]
     for i in decode_yolo_processes:
         i.start()
         logging.debug('start decode and yolo process')
