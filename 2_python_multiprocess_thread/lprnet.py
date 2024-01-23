@@ -192,7 +192,7 @@ class LPRNet(object):
         return res
 
     def __call__(self, bmimg_list):
-        # img_num = len(bmimg_list)
+        img_num = len(bmimg_list)
         if self.batch_size == 1:
             res = []
             bmimg = bmimg_list
