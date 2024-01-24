@@ -11,3 +11,8 @@
 - 测试数据 
     - SE5 车牌模型（单类识别） 4batch int8，16路视频，loops=1000。fps=147.8,tpu=100%.
 
+    
+增加lprent
+
+- loops for one process is 1000,total fps is 175.2710897575023
+- loops for one process is 100,total fps is 89

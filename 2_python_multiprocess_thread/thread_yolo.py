@@ -10,6 +10,26 @@ import logging
 # import lprnet  
 from lprnet import CHARS,CHARS_DICT
 
+from draw_chinese import draw
+import cv2
+
+import signal
+def kill_child_processes(parent_pid, sig=signal.SIGTERM):
+    try:
+        # 获取当前进程的子进程 ID
+        child_pids = os.popen(f"pgrep -P {parent_pid}").read().splitlines()
+    except Exception as e:
+        print(f"无法获取子进程的 ID：{e}")
+        return
+
+    # 终止子进程
+    for pid in child_pids:
+        try:
+            os.kill(int(pid), sig)
+            print(f"已终止子进程：{pid}")
+        except Exception as e:
+            print(f"无法终止子进程 {pid}：{e}")
+
 class MultiDecoderThread(object):
     def __init__(self, tpu_id, video_list, resize_type:sail.sail_resize_type, max_que_size:int, loop_count:int,process_id:int):
         self.channel_list = {}
@@ -19,13 +39,14 @@ class MultiDecoderThread(object):
         '''mytest'''
         self.resize_type_lprnet = sail.sail_resize_type.BM_RESIZE_TPU_LINEAR
 
-        self.multiDecoder = sail.MultiDecoder(15, tpu_id)
+        self.multiDecoder = sail.MultiDecoder(16, tpu_id)
         self.multiDecoder.set_local_flag(True)
 
         self.loop_count = loop_count
 
         self.post_que = queue.Queue(max_que_size)
         self.image_que = queue.Queue(max_que_size)
+        self.licenseplate_queue = queue.Queue(max_que_size)
 
         self.exit_flag = False
         self.flag_lock = threading.Lock()
@@ -33,7 +54,7 @@ class MultiDecoderThread(object):
         self.process_id = process_id
 
         for video_name in video_list:
-            channel_index = self.multiDecoder.add_channel(video_name,1)
+            channel_index = self.multiDecoder.add_channel(video_name,0)
             print("Process {}  Add Channel[{}]: {}".format(process_id,channel_index,video_name))
             self.channel_list[channel_index] = video_name
 
@@ -58,7 +79,7 @@ class MultiDecoderThread(object):
 
     def InitProcess(self, yolo_bmodel,lprnet_bmodel,dete_threshold,nms_threshold):
         self.engine_image_pre_process = sail.EngineImagePreProcess(yolo_bmodel, self.tpu_id, 0)
-        self.engine_image_pre_process.InitImagePreProcess(self.resize_type, True, 10, 10)
+        self.engine_image_pre_process.InitImagePreProcess(self.resize_type, True, 8, 8)
         self.engine_image_pre_process.SetPaddingAtrr()
         self.engine_image_pre_process.SetConvertAtrr(self.alpha_beta)
         # self.net_w = self.engine_image_pre_process.get_input_width()
@@ -68,28 +89,28 @@ class MultiDecoderThread(object):
         self.yolo_batch_size = self.engine_image_pre_process.get_output_shape(output_names[0])[0]
         output_shapes = [self.engine_image_pre_process.get_output_shape(i) for i in output_names]
         logging.debug('Process {},YOLO RECEIVE IPC INIT DONE,bmodel output_shapes {}'.format(self.process_id,output_shapes))
-        self.yolov5_post_async = sail.algo_yolov5_post_cpu_opt_async([output_shapes[0],output_shapes[1],output_shapes[2]],640,640,10)
-        self.bmcv = sail.Bmcv(sail.Handle(0))
+        self.yolov5_post_async = sail.algo_yolov5_post_cpu_opt_async([output_shapes[0],output_shapes[1],output_shapes[2]],640,640,8)
+        self.handle = sail.Handle(0)
+        self.bmcv = sail.Bmcv(self.handle)
 
-        # self.lprnet = lprnet.LPRNet(lprnet_bmodel,self.tpu_id)
+        # lprnet
         self.lprnet_engine_image_pre_process = sail.EngineImagePreProcess(lprnet_bmodel, self.tpu_id, 0)
-        self.lprnet_engine_image_pre_process.InitImagePreProcess(self.resize_type_lprnet, True, 10, 10)
+        self.lprnet_engine_image_pre_process.InitImagePreProcess(self.resize_type_lprnet, True, 32, 32) # queue_in_size ,queue_out_size
         self.lprnet_engine_image_pre_process.SetConvertAtrr(self.alpha_beta_lprnet)
         self.lprnet_output_names = self.lprnet_engine_image_pre_process.get_output_names()[0]
 
         thread_preprocess = threading.Thread(target=self.decoder_and_pushdata, args=(self.channel_list, self.multiDecoder, self.engine_image_pre_process))
-        thread_inference = threading.Thread(target=self.Inferences_thread, args=(self.resize_type, self.tpu_id, self.post_que, self.image_que))
+        thread_inference = threading.Thread(target=self.Inferences_thread, args=(self.post_que, self.image_que))
         thread_postprocess = threading.Thread(target=self.post_process, args=(self.post_que, dete_threshold, nms_threshold))
-        thread_lprnet = threading.Thread(target=self.lprnet_pre_and_process,args=(self.image_que,))
+        thread_lprnet = threading.Thread(target=self.lprnet_pre_and_process,args=(self.image_que,self.licenseplate_queue))
         
-        thread_drawresult = threading.Thread(target=self.lprnet_post_and_draw_result, args=(self.image_que,))
+        thread_drawresult = threading.Thread(target=self.lprnet_post_and_draw_result, args=(self.licenseplate_queue,))
         
         
         thread_postprocess.start()
         thread_preprocess.start()
-        thread_lprnet.start()
-
-        thread_inference.start()
+        thread_lprnet.start() # 在video 4的时候不能正常退出，video 16可以
+        thread_inference.start() # 在video 4的时候不能正常退出，video 16可以
         thread_drawresult.start()
        
     
@@ -99,7 +120,7 @@ class MultiDecoderThread(object):
         total_count = 0
         while True:
             if self.get_exit_flag():
-                    break
+                break
             for key in channel_list:
                 if self.get_exit_flag():
                     break
@@ -120,7 +141,7 @@ class MultiDecoderThread(object):
 
         print("decoder_and_pushdata thread exit!")
 
-    def Inferences_thread(self, resize_type:sail.sail_resize_type, device_id:int, post_queue:queue.Queue, img_queue:queue.Queue):
+    def Inferences_thread(self,  post_queue:queue.Queue, img_queue:queue.Queue):
         while True:
             if self.get_exit_flag():
                 break
@@ -161,7 +182,7 @@ class MultiDecoderThread(object):
                 # print('put to img queue',(channel,imageidx_list[index]))
                 # print('00000000000000000000000000000000000')
                 img_queue.put({(channel,imageidx_list[index]):ost_images[index]}) 
-                
+
                 logging.debug("put ost img to queue,  cid is {},frameid is{}".format(channel,imageidx_list[index]))
 
             # elements = list(img_queue.queue)
@@ -202,7 +223,7 @@ class MultiDecoderThread(object):
                 break
         print("post_process thread exit!")
     
-    def lprnet_pre_and_process(self, img_queue:queue.Queue):
+    def lprnet_pre_and_process(self, img_queue:queue.Queue, licenseplate_queue:queue.Queue):
         while (True):
             if self.get_exit_flag():
                 break
@@ -214,9 +235,9 @@ class MultiDecoderThread(object):
             # print(elements)
             ocv_image = img_queue.get(True) 
 
-            objs, channel, image_idx = self.yolov5_post_async.get_result_npy() #yolov5推理的单输出结果。和ocv_image 如何一一对应？queue中维护一个dict？
+            objs, channel, image_idx = self.yolov5_post_async.get_result_npy() 
 
-            print("lprnet_pre_and_process: yolo post id and ocv id is ",(channel,image_idx),ocv_image.keys()) # 判断，看上去不是一一对应？ 需要用queue吗
+            print("lprnet_pre_and_process: yolo post id and ocv id is ",(channel,image_idx),ocv_image.keys()) 
 
             if (channel,image_idx) == list(ocv_image.keys())[0]:
                 for obj in objs: # 一张图上多个结果
@@ -232,29 +253,36 @@ class MultiDecoderThread(object):
                 logging.error("lprnet_pre_and_process:  yolo post result idx{}is not equal to origin images idx{}")
                 logging.error((channel,image_idx) ,list(ocv_image.keys())[0])
 
+            '''
+            my test 
+            put box and img to queue
+            ''' 
+            while licenseplate_queue.full():  # 似乎默认逻辑是如果队列满了就抛出异常
+                print("!!!!!!!thread 4 lprnet_pre_and_process put ost img to licenseplate_queue is full!!!!!!!!!!!!")
+                logging.error("!!!!!!!thread 4 lprnet_pre_and_process put ost img to licenseplate_queue is full!!!!!!!!!!!!")
+                time.sleep(0.01)
+                if self.get_exit_flag():
+                    break
+                continue 
+            for obj in objs:
+                licenseplate_queue.put((ocv_image,obj))    
         print("Lprnet_pre_and_process thread exit!")
 
-    def lprnet_post_and_draw_result(self, img_queue:queue.Queue):
+    def lprnet_post_and_draw_result(self, licenseplate_queue:queue.Queue):
 
         total_count = 0
         start_time = time.time()
         while (True):
-            if img_queue.empty():
-                time.sleep(0.01)
-                continue
-            # ocv_image = img_queue.get(True) 
             # 1 get lprnet process res
             
             output, _, channel_list, image_idx_list,_ = self.lprnet_engine_image_pre_process.GetBatchData_Npy() 
+            logging.debug("Lprnet_post:Process {},channel_idx is {} image_idx is {}".format(self.process_id,channel_list, image_idx_list))
+            print(len(output),channel_list, image_idx_list)
 
-            print(type(output),output.keys(),len(output),self.lprnet_output_names,channel_list, image_idx_list)
-
-
-            # output_array = output[self.lprnet_output_names]
             output_array = output[self.lprnet_output_names][:4]
-            print(len(output_array))
 
-            res = list()
+
+            res = list() # lprnet的batch=4时res长度为4
             for temp in np.argmax(output_array, axis=1):
                 no_repeat_blank_label = list()
                 pre_c = temp[0]
@@ -271,16 +299,47 @@ class MultiDecoderThread(object):
             print(res)
             logging.info('LPRNET POSTPROCESS DONE,res{}'.format(res))
 
-            '''draw'''
-                # bmcv.rectangle(ocv_image, obj[0], obj[1], obj[2]-obj[0], obj[3]-obj[1],(0,0,255),2)
-            # image = sail.BMImage(handle,ocv_image.height(),ocv_image.width(),sail.Format.FORMAT_YUV420P,sail.ImgDtype.DATA_TYPE_EXT_1N_BYTE)
-            # bmcv.convert_format(ocv_image,image)
-            # for obj in objs:
-            #     txt_d = "{}".format(obj[4])
-            #     bmcv.putText(image, txt_d , obj[0], obj[1], [0,0,255], 1.4, 2)
-            # bmcv.imwrite("{}_{}.jpg".format(channel,image_idx),image)
+            '''
+            my test
+            send licenplate res to queue
+            '''
+            temp = 0
+            for i,j in zip(channel_list, image_idx_list):
+                print(i,j)
+                lp_line = res[temp]
+                temp += 1
 
-            
+                lp_res = licenseplate_queue.get(True)  #ocv img 怎么还包了一层啊！
+                print(lp_res)
+                ocv_image,obj = lp_res
+                cid_yolo_ori_img,fid_yolo_ori_img = list(ocv_image.keys())[0]
+                ori_img = list(ocv_image.values())[0]
+                print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+                print((cid_yolo_ori_img,fid_yolo_ori_img),(ocv_image,obj) )
+                print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+                if (i,j) != (cid_yolo_ori_img,fid_yolo_ori_img):
+                    logging.error("lprnet_post_and_draw_result: not equal frame.must be something wrong")
+                    
+                else:
+                    x1, y1, x2, y2, category_id, score = obj
+                    '''draw'''
+                    print("xxxxxxxxxxxx---start---write---xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+                    self.bmcv.rectangle(ori_img,x1, y1, x2-x1, y2-y1,(0,0,255),2)
+
+                    image = sail.BMImage(self.handle,ori_img.height(),ori_img.width(),sail.Format.FORMAT_YUV420P,sail.ImgDtype.DATA_TYPE_EXT_1N_BYTE)
+                    self.bmcv.convert_format(ori_img,image) # 转换bmimg格式
+                    
+                    score_d = "{}".format(obj[5])
+                    self.bmcv.putText(image, score_d ,x1, y1, [0,0,255], 1.4, 2)
+                    put_chinese_img = draw(image.asmat(),x1, y1,lp_line,i,j) # numpy 转bmimg？
+                    # 写不上中文？
+                    # image = self.bmcv.mat_to_bm_image(put_chinese_img) 
+                    # self.bmcv.imwrite("{}_{}.jpg".format(i,j),image)
+                    # cv2.imwrite("{}_{}.jpg".format(i,j),put_chinese_img)
+                    print("xxxxxxxxxxxx---write---done----xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+
             if self.loop_count <=  image_idx_list[-1]:
                 logging.debug("LOOPS DONE")
                 break
@@ -308,16 +367,16 @@ def process_demo(tpu_id, max_que_size, video_name_list, yolo_bmodel,lprnet_bmode
 
 def argsparser():
     parser = argparse.ArgumentParser(prog=__file__)
-    parser.add_argument('--multidecode_max_que_size', type=int, default=16, help='multidecode queue')
+    parser.add_argument('--max_que_size', type=int, default=16, help='multidecode queue')
     parser.add_argument('--ipc_recive_queue_len', type=int, default=16, help='ipc recive queue')
     parser.add_argument('--video_nums', type=int, default=16, help='procress nums of input')
     parser.add_argument('--batch_size', type=int, default=4, help='video_nums/batch_size is procress nums of process and postprocess')
     parser.add_argument('--loops', type=int, default=100, help='process loops for one video')
-    parser.add_argument('--input', type=str, default='/data/licenseplate_640516-h264.mp4', help='path of input, must be video path') 
+    parser.add_argument('--input', type=str, default='/data/1080_1920_5s.mp4', help='path of input, must be video path') 
     parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
     parser.add_argument('--lprnet_bmodel', type=str, default='../models/lprnet/BM1684/lprnet_int8_4b.bmodel', help='path of bmodel')
     parser.add_argument('--dev_id', type=int, default=0, help='tpu id')
-
+    parser.add_argument('--draw_images', type=bool, default=False, help='tpu id')
     args = parser.parse_args()
     return args
 
@@ -328,7 +387,7 @@ if __name__ == '__main__':
     logging.basicConfig(filename= f'1684_yolo_process_and_video_thread_is_{args.video_nums}.log',filemode='w',level=logging.DEBUG)
 
     # decoder_count = 4           #每个进程解码的路数
-    max_que_size = args.multidecode_max_que_size           #缓存的大小
+    max_que_size = args.max_que_size           #缓存的大小
     loop_count = args.loops           #每个进程处理图片的数量，处理完毕之后会退出。
 
     
