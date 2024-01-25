@@ -46,3 +46,23 @@ DEBUG:root:DONE decode and yolo process
 INFO:root:video nums32, process is 8,total time is 110.4132616519928,loops for one process is 2000,total fps is 144.9101290968993
 
 ```
+
+4路 tpu 70%
+```
+INFO:root:Engine_image_pre_process GetBatchData time use: 33.57 ms
+DEBUG:root:LOOPS DONE
+INFO:root:Process 0:Loops1000,Total time use: 9607.841491699219 ms, avg_time9.607841491699219, 104.08165047934638 FPS
+INFO:root:Engine_image_pre_process GetBatchData time use: 38.38 ms
+DEBUG:root:DONE decode and yolo process
+INFO:root:video nums4, process is 1,total time is 10.85062837600708,loops for one process is 1000,total fps is 92.1605611534168
+```
+
+8路 tpu 100%
+```
+INFO:root:Engine_image_pre_process GetBatchData time use: 29.48 ms
+DEBUG:root:LOOPS DONE
+INFO:root:Process 1:Loops1000,Total time use: 13833.704471588135 ms, avg_time13.833704471588135, 72.2872172131344 FPS
+INFO:root:Engine_image_pre_process GetBatchData time use: 29.89 ms
+DEBUG:root:DONE decode and yolo process
+INFO:root:video nums8, process is 2,total time is 15.254946947097778,loops for one process is 1000,total fps is 131.1050118322762
+```
