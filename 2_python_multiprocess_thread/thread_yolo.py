@@ -39,7 +39,7 @@ class MultiDecoderThread(object):
         self.tpu_id = tpu_id
         self.break_flag = False
         self.resize_type = resize_type
-        '''mytest'''
+
         self.resize_type_lprnet = sail.sail_resize_type.BM_RESIZE_TPU_LINEAR
 
         self.multiDecoder = sail.MultiDecoder(16, tpu_id)
@@ -65,10 +65,6 @@ class MultiDecoderThread(object):
 
         # lprnet 
         self.input_scale_lprnet = 1 
-        # self.alpha_beta_lprnet = [
-        #     x * self.input_scale_lprnet * 0.0078125 for x in [1, -127.5, 1, -127.5, 1, -127.5]
-        # ]
-
         self.alpha_beta_lprnet = (
             tuple(x * 1 * 0.0078125 for x in [1, -127.5]),
             tuple(x * 1 * 0.0078125 for x in [1, -127.5]),
@@ -85,8 +81,7 @@ class MultiDecoderThread(object):
         self.engine_image_pre_process.InitImagePreProcess(self.resize_type, True, 8, 8)
         self.engine_image_pre_process.SetPaddingAtrr()
         self.engine_image_pre_process.SetConvertAtrr(self.alpha_beta)
-        # self.net_w = self.engine_image_pre_process.get_input_width()
-        # self.net_h = self.engine_image_pre_process.get_input_height()
+
 
         output_names = self.engine_image_pre_process.get_output_names()
         self.yolo_batch_size = self.engine_image_pre_process.get_output_shape(output_names[0])[0]
@@ -112,15 +107,14 @@ class MultiDecoderThread(object):
         
         thread_postprocess.start()
         thread_preprocess.start()
-        thread_lprnet.start() # 在video 4的时候不能正常退出，video 16可以
-        thread_inference.start() # 在video 4的时候不能正常退出，video 16可以
+        thread_lprnet.start() 
+        thread_inference.start() 
         thread_drawresult.start()
        
     
     def decoder_and_pushdata(self,channel_list, multi_decoder, PreProcessAndInference):
         image_index = 0
-        time_start = time.time()
-        total_count = 0
+
         while True:
             if self.get_exit_flag():
                 break
@@ -132,13 +126,6 @@ class MultiDecoderThread(object):
                 if ret == 0:
                     image_index += 1
                     PreProcessAndInference.PushImage(int(key),image_index, bmimg)
-                    total_count += 1
-                    if total_count == 2000:
-                        total_time = (time.time()-time_start)*1000
-                        avg_time = total_time/total_count
-                        print("########################avg time: {:.2f}".format(avg_time))
-                        total_count = 0
-
                 else:
                     time.sleep(0.01)
 
@@ -150,10 +137,6 @@ class MultiDecoderThread(object):
                 break
             start_time = time.time()
             output_tensor_map, ost_images, channel_list ,imageidx_list, padding_atrr = self.engine_image_pre_process.GetBatchData(True)
-
-            # print('111111111111111111111111111111111')
-            # print('pre get channel_list ,imageidx_list,',channel_list ,imageidx_list)
-            # print('111111111111111111111111111111111')
 
             width_list = []
             height_list= []
@@ -174,24 +157,16 @@ class MultiDecoderThread(object):
                             padding_atrr],False)
             
             for index, channel in enumerate(channel_list):
-                if self.get_exit_flag():
-                    break
+
                 while img_queue.full():
                     time.sleep(0.01)
                     if self.get_exit_flag():
                         break
                     continue 
-                # print('00000000000000000000000000000000000 img queue')
-                # print('put to img queue',(channel,imageidx_list[index]))
-                # print('00000000000000000000000000000000000')
                 img_queue.put({(channel,imageidx_list[index]):ost_images[index]}) 
 
                 logging.debug("put ost img to queue,  cid is {},frameid is{}".format(channel,imageidx_list[index]))
 
-            # elements = list(img_queue.queue)
-            # print("ost put ~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!")
-            # print(elements)
-            # print("ost put ~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!")
             end_time = time.time()
             logging.info("Engine_image_pre_process GetBatchData time use: {:.2f} ms".format((end_time-start_time)*1000))
         
@@ -202,9 +177,9 @@ class MultiDecoderThread(object):
         while (True):
             if self.get_exit_flag():
                 break
-            if post_quque.empty():
-                time.sleep(0.01)
-                continue
+            # if post_quque.empty():
+            #     time.sleep(0.01)
+            #     continue
             output_tensor_map, channels ,imageidxs, ost_ws, ost_hs, padding_atrrs = post_quque.get(True)
 
             dete_thresholds = np.ones(len(channels),dtype=np.float32)
@@ -215,9 +190,7 @@ class MultiDecoderThread(object):
                 if self.get_exit_flag():
                     break
                 ret = self.yolov5_post_async.push_data(channels, imageidxs, output_tensor_map, dete_thresholds, nms_thresholds, ost_ws, ost_hs, padding_atrrs)
-                # print('33333333333333333333333333333333')
-                # print("yolo post push",channels, imageidxs) # 判断，看上去不是一一对应？ 需要用queue吗
-                # print('3333333333333333333333333333333333')
+
                 if ret == 0:
                     break
                 else:
