@@ -107,14 +107,15 @@ class MultiDecoderThread(object):
         thread_postprocess = threading.Thread(target=self.post_process, args=(self.post_que, dete_threshold, nms_threshold))
         thread_lprnet = threading.Thread(target=self.lprnet_pre_and_process,args=(self.image_que,self.ostimg_box_queue))
         
-        thread_drawresult = threading.Thread(target=self.lprnet_post_and_draw_result, args=(self.ostimg_box_queue,))
+        # thread_drawresult = threading.Thread(target=self.lprnet_post_and_draw_result, args=(self.ostimg_box_queue,))
         
         
         thread_postprocess.start()
         thread_preprocess.start()
-        thread_lprnet.start() # 在video 4的时候不能正常退出，video 16可以
-        thread_inference.start() # 在video 4的时候不能正常退出，video 16可以
-        thread_drawresult.start()
+        thread_inference.start() 
+
+        thread_lprnet.start() 
+        # thread_drawresult.start()
        
     
     def decoder_and_pushdata(self,channel_list, multi_decoder, PreProcessAndInference):
@@ -151,10 +152,6 @@ class MultiDecoderThread(object):
             start_time = time.time()
             output_tensor_map, ost_images, channel_list ,imageidx_list, padding_atrr = self.engine_image_pre_process.GetBatchData(True)
 
-            # print('111111111111111111111111111111111')
-            # print('pre get channel_list ,imageidx_list,',channel_list ,imageidx_list)
-            # print('111111111111111111111111111111111')
-
             width_list = []
             height_list= []
             for index, channel in enumerate(channel_list):
@@ -173,25 +170,20 @@ class MultiDecoderThread(object):
                             height_list, 
                             padding_atrr],False)
             
-            for index, channel in enumerate(channel_list):
-                if self.get_exit_flag():
-                    break
-                while img_queue.full():
-                    time.sleep(0.01)
-                    if self.get_exit_flag():
-                        break
-                    continue 
-                # print('00000000000000000000000000000000000 img queue')
-                # print('put to img queue',(channel,imageidx_list[index]))
-                # print('00000000000000000000000000000000000')
-                img_queue.put({(channel,imageidx_list[index]):ost_images[index]}) 
+            # for index, channel in enumerate(channel_list):
+            #     if self.get_exit_flag():
+            #         break
+            #     while img_queue.full():
+            #         time.sleep(0.01)
+            #         if self.get_exit_flag():
+            #             break
+            #         continue 
 
-                logging.debug("put ost img to queue,  cid is {},frameid is{}".format(channel,imageidx_list[index]))
+            #     img_queue.put({(channel,imageidx_list[index]):ost_images[index]}) 
 
-            # elements = list(img_queue.queue)
-            # print("ost put ~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!")
-            # print(elements)
-            # print("ost put ~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!")
+            #     logging.debug("put ost img to queue,  cid is {},frameid is{}".format(channel,imageidx_list[index]))
+
+
             end_time = time.time()
             logging.info("Engine_image_pre_process GetBatchData time use: {:.2f} ms".format((end_time-start_time)*1000))
         
@@ -227,51 +219,73 @@ class MultiDecoderThread(object):
         print("post_process thread exit!")
     
     def lprnet_pre_and_process(self, img_queue:queue.Queue, ostimg_box_queue:queue.Queue):
+        start_time = time.time()
+        temp = 0
         while (True):
             if self.get_exit_flag():
                 break
-            if img_queue.empty():
-                time.sleep(0.01)
-                continue
+            # if img_queue.empty():
+            #     time.sleep(0.01)
+            #     continue
 
             # elements = list(img_queue.queue)
             # print(elements)
-            ocv_image = img_queue.get(True) 
+            # ocv_image = img_queue.get(True) 
 
             objs, channel, image_idx = self.yolov5_post_async.get_result_npy() 
+            # print(temp)
+            
+            # print("lprnet_pre_and_process: yolo post id and ocv id is ",(channel,image_idx),ocv_image.keys()) 
 
-            print("lprnet_pre_and_process: yolo post id and ocv id is ",(channel,image_idx),ocv_image.keys()) 
+            # if (channel,image_idx) == list(ocv_image.keys())[0]:
+            #     for obj in objs: # 一张图上多个结果
+            #         x1, y1, x2, y2, category_id, score = obj
+            #         img = list(ocv_image.values())[0]
+            #         logging.debug("Lprnet_pre_and_process:Process {},channel_idx is {} image_idx is {},len(objs) is{}".format(self.process_id,channel, image_idx, len(objs)))
+            #         logging.info("Lprnet_pre_and_process:Process %d,YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :%s",self.process_id,obj)
 
-            if (channel,image_idx) == list(ocv_image.keys())[0]:
-                for obj in objs: # 一张图上多个结果
-                    x1, y1, x2, y2, category_id, score = obj
-                    img = list(ocv_image.values())[0]
-                    logging.debug("Lprnet_pre_and_process:Process {},channel_idx is {} image_idx is {},len(objs) is{}".format(self.process_id,channel, image_idx, len(objs)))
-                    logging.info("Lprnet_pre_and_process:Process %d,YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :%s",self.process_id,obj)
+            #         croped = self.bmcv.crop(img,int(x1),int(y1),int(x2-x1),int(y2-y1))
+            #         self.lprnet_engine_image_pre_process.PushImage(channel, image_idx, croped)
 
-                    croped = self.bmcv.crop(img,int(x1),int(y1),int(x2-x1),int(y2-y1))
-                    self.lprnet_engine_image_pre_process.PushImage(channel, image_idx, croped)
+            #         '''
+            #         my test 
+            #         put box and img to queue
+            #         ''' 
+            #         if self.draw_images:
+            #             while ostimg_box_queue.full() and not self.get_exit_flag():  # 似乎默认逻辑是如果队列满了就抛出异常
+            #                 print("lprnet_pre_and_process put ost img to ostimg_box_queue is full!!!!!!!!!!!!")
+            #                 logging.error("lprnet_pre_and_process put ost img to ostimg_box_queue is full!!!!!!!!!!!!")
+            #                 logging.error("IM WAITING!! ............")
+            #                 time.sleep(0.01)
 
-                    '''
-                    my test 
-                    put box and img to queue
-                    ''' 
-                    if self.draw_images:
-                        while ostimg_box_queue.full() and not self.get_exit_flag():  # 似乎默认逻辑是如果队列满了就抛出异常
-                            print("lprnet_pre_and_process put ost img to ostimg_box_queue is full!!!!!!!!!!!!")
-                            logging.error("lprnet_pre_and_process put ost img to ostimg_box_queue is full!!!!!!!!!!!!")
-                            logging.error("IM WAITING!! ............")
-                            time.sleep(0.01)
-
-                        # ostimg_box_queue.put((copy.deepcopy(ocv_image),obj)) # TypeError:cannot pickle 'sophon.sail.BMImage' object
-                        copy_bmimg = sail.BMImage(self.handle,img.height(),img.width(),img.format(), img.dtype())
-                        self.bmcv.image_copy_to(img,copy_bmimg)
+            #             # ostimg_box_queue.put((copy.deepcopy(ocv_image),obj)) # TypeError:cannot pickle 'sophon.sail.BMImage' object
+            #             copy_bmimg = sail.BMImage(self.handle,img.height(),img.width(),img.format(), img.dtype())
+            #             self.bmcv.image_copy_to(img,copy_bmimg)
                         
-                        ostimg_box_queue.put(({(channel,image_idx):copy_bmimg},obj)) # 是这里有内存泄漏吗
-            else:
-                logging.error("lprnet_pre_and_process:  yolo post result idx{}is not equal to origin images idx{}")
-                logging.error((channel,image_idx) ,list(ocv_image.keys())[0])
+            #             ostimg_box_queue.put(({(channel,image_idx):copy_bmimg},obj)) # 是这里有内存泄漏吗
+            # else:
+            #     logging.error("lprnet_pre_and_process:  yolo post result idx{}is not equal to origin images idx{}")
+            #     logging.error((channel,image_idx) ,list(ocv_image.keys())[0])
+            if self.loop_count <=  temp:
+                logging.debug("LOOPS DONE")
+                break
+            temp += 1
+        end_time = time.time()
+        time_use = (end_time-start_time)*1000
+        avg_time = time_use/temp
 
+        print("Process {}:Total images: {} ms".format(self.process_id, self.loop_count))
+        print("Total time use: {} ms".format(time_use))
+        print("Avg time use: {} ms".format(avg_time))
+        print("Process {}: {} FPS".format(self.process_id, 1000/avg_time))
+        print("Result thread exit!")
+
+        logging.info("Process {}:Loops{},Total time use: {} ms, avg_time{}, {} FPS".format(self.process_id, self.loop_count,time_use,avg_time,1000/avg_time))
+
+        
+        self.flag_lock.acquire()
+        self.exit_flag = True
+        self.flag_lock.release()
 
         print("Lprnet_pre_and_process thread exit!")
 
@@ -364,7 +378,7 @@ def argsparser():
     parser.add_argument('--video_nums', type=int, default=16, help='procress nums of input')
     parser.add_argument('--batch_size', type=int, default=4, help='video_nums/batch_size is procress nums of process and postprocess')
     parser.add_argument('--loops', type=int, default=100, help='process loops for one video')
-    parser.add_argument('--input', type=str, default='/data/1080_1920_5s.mp4', help='path of input, must be video path') 
+    parser.add_argument('--input', type=str, default='/data/licenseplate_640516-h264.mp4', help='path of input, must be video path') 
     parser.add_argument('--yolo_bmodel', type=str, default='../models/yolov5s-licensePLate/BM1684/yolov5s_v6.1_license_3output_int8_4b.bmodel', help='path of bmodel')
     parser.add_argument('--lprnet_bmodel', type=str, default='../models/lprnet/BM1684/lprnet_int8_4b.bmodel', help='path of bmodel')
     parser.add_argument('--dev_id', type=int, default=0, help='tpu id')
