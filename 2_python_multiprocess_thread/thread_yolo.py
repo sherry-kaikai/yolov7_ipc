@@ -10,8 +10,9 @@ import logging
 # import lprnet  
 from lprnet import CHARS,CHARS_DICT
 
-from draw_chinese import draw
+from draw_chinese import draw_lp
 import cv2
+import copy
 
 import signal
 def kill_child_processes(parent_pid, sig=signal.SIGTERM):
@@ -31,7 +32,9 @@ def kill_child_processes(parent_pid, sig=signal.SIGTERM):
             print(f"无法终止子进程 {pid}：{e}")
 
 class MultiDecoderThread(object):
-    def __init__(self, tpu_id, video_list, resize_type:sail.sail_resize_type, max_que_size:int, loop_count:int,process_id:int):
+    def __init__(self, draw_images, tpu_id, video_list, resize_type:sail.sail_resize_type, max_que_size:int, loop_count:int,process_id:int):
+        self.draw_images = draw_images
+        
         self.channel_list = {}
         self.tpu_id = tpu_id
         self.break_flag = False
@@ -46,7 +49,7 @@ class MultiDecoderThread(object):
 
         self.post_que = queue.Queue(max_que_size)
         self.image_que = queue.Queue(max_que_size)
-        self.licenseplate_queue = queue.Queue(max_que_size)
+        self.ostimg_box_queue = queue.Queue(max_que_size-4)
 
         self.exit_flag = False
         self.flag_lock = threading.Lock()
@@ -102,9 +105,9 @@ class MultiDecoderThread(object):
         thread_preprocess = threading.Thread(target=self.decoder_and_pushdata, args=(self.channel_list, self.multiDecoder, self.engine_image_pre_process))
         thread_inference = threading.Thread(target=self.Inferences_thread, args=(self.post_que, self.image_que))
         thread_postprocess = threading.Thread(target=self.post_process, args=(self.post_que, dete_threshold, nms_threshold))
-        thread_lprnet = threading.Thread(target=self.lprnet_pre_and_process,args=(self.image_que,self.licenseplate_queue))
+        thread_lprnet = threading.Thread(target=self.lprnet_pre_and_process,args=(self.image_que,self.ostimg_box_queue))
         
-        thread_drawresult = threading.Thread(target=self.lprnet_post_and_draw_result, args=(self.licenseplate_queue,))
+        thread_drawresult = threading.Thread(target=self.lprnet_post_and_draw_result, args=(self.ostimg_box_queue,))
         
         
         thread_postprocess.start()
@@ -223,7 +226,7 @@ class MultiDecoderThread(object):
                 break
         print("post_process thread exit!")
     
-    def lprnet_pre_and_process(self, img_queue:queue.Queue, licenseplate_queue:queue.Queue):
+    def lprnet_pre_and_process(self, img_queue:queue.Queue, ostimg_box_queue:queue.Queue):
         while (True):
             if self.get_exit_flag():
                 break
@@ -242,39 +245,44 @@ class MultiDecoderThread(object):
             if (channel,image_idx) == list(ocv_image.keys())[0]:
                 for obj in objs: # 一张图上多个结果
                     x1, y1, x2, y2, category_id, score = obj
-
+                    img = list(ocv_image.values())[0]
                     logging.debug("Lprnet_pre_and_process:Process {},channel_idx is {} image_idx is {},len(objs) is{}".format(self.process_id,channel, image_idx, len(objs)))
                     logging.info("Lprnet_pre_and_process:Process %d,YOLO postprocess DONE! objs:tuple[left, top, right, bottom, class_id, score] :%s",self.process_id,obj)
 
-                    croped = self.bmcv.crop(list(ocv_image.values())[0],int(x1),int(y1),int(x2-x1),int(y2-y1))
+                    croped = self.bmcv.crop(img,int(x1),int(y1),int(x2-x1),int(y2-y1))
                     self.lprnet_engine_image_pre_process.PushImage(channel, image_idx, croped)
-            else:
 
+                    '''
+                    my test 
+                    put box and img to queue
+                    ''' 
+                    if self.draw_images:
+                        while ostimg_box_queue.full() and not self.get_exit_flag():  # 似乎默认逻辑是如果队列满了就抛出异常
+                            print("lprnet_pre_and_process put ost img to ostimg_box_queue is full!!!!!!!!!!!!")
+                            logging.error("lprnet_pre_and_process put ost img to ostimg_box_queue is full!!!!!!!!!!!!")
+                            logging.error("IM WAITING!! ............")
+                            time.sleep(0.01)
+
+                        # ostimg_box_queue.put((copy.deepcopy(ocv_image),obj)) # TypeError:cannot pickle 'sophon.sail.BMImage' object
+                        copy_bmimg = sail.BMImage(self.handle,img.height(),img.width(),img.format(), img.dtype())
+                        self.bmcv.image_copy_to(img,copy_bmimg)
+                        
+                        ostimg_box_queue.put(({(channel,image_idx):copy_bmimg},obj)) # 是这里有内存泄漏吗
+            else:
                 logging.error("lprnet_pre_and_process:  yolo post result idx{}is not equal to origin images idx{}")
                 logging.error((channel,image_idx) ,list(ocv_image.keys())[0])
 
-            '''
-            my test 
-            put box and img to queue
-            ''' 
-            while licenseplate_queue.full():  # 似乎默认逻辑是如果队列满了就抛出异常
-                print("!!!!!!!thread 4 lprnet_pre_and_process put ost img to licenseplate_queue is full!!!!!!!!!!!!")
-                logging.error("!!!!!!!thread 4 lprnet_pre_and_process put ost img to licenseplate_queue is full!!!!!!!!!!!!")
-                time.sleep(0.01)
-                if self.get_exit_flag():
-                    break
-                continue 
-            for obj in objs:
-                licenseplate_queue.put((ocv_image,obj))    
+
         print("Lprnet_pre_and_process thread exit!")
 
-    def lprnet_post_and_draw_result(self, licenseplate_queue:queue.Queue):
+    def lprnet_post_and_draw_result(self, ostimg_box_queue:queue.Queue):
 
         total_count = 0
         start_time = time.time()
         while (True):
             # 1 get lprnet process res
-            
+            if self.get_exit_flag():
+                break
             output, _, channel_list, image_idx_list,_ = self.lprnet_engine_image_pre_process.GetBatchData_Npy() 
             logging.debug("Lprnet_post:Process {},channel_idx is {} image_idx is {}".format(self.process_id,channel_list, image_idx_list))
             print(len(output),channel_list, image_idx_list)
@@ -303,42 +311,26 @@ class MultiDecoderThread(object):
             my test
             send licenplate res to queue
             '''
-            temp = 0
-            for i,j in zip(channel_list, image_idx_list):
-                print(i,j)
-                lp_line = res[temp]
-                temp += 1
-
-                lp_res = licenseplate_queue.get(True)  #ocv img 怎么还包了一层啊！
-                print(lp_res)
-                ocv_image,obj = lp_res
-                cid_yolo_ori_img,fid_yolo_ori_img = list(ocv_image.keys())[0]
-                ori_img = list(ocv_image.values())[0]
-                print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-                print((cid_yolo_ori_img,fid_yolo_ori_img),(ocv_image,obj) )
-                print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-
-                if (i,j) != (cid_yolo_ori_img,fid_yolo_ori_img):
-                    logging.error("lprnet_post_and_draw_result: not equal frame.must be something wrong")
+            if self.draw_images:
+                for temp in range(len(res)):
+                    i = channel_list[temp]
+                    j = image_idx_list[temp]
+                    lp_chinese_line = res[temp]
                     
-                else:
-                    x1, y1, x2, y2, category_id, score = obj
-                    '''draw'''
-                    print("xxxxxxxxxxxx---start---write---xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-                    self.bmcv.rectangle(ori_img,x1, y1, x2-x1, y2-y1,(0,0,255),2)
+                    '''get ost_imgs and box from yolo post'''
+                    ocv_image, obj = ostimg_box_queue.get(True)  
 
-                    image = sail.BMImage(self.handle,ori_img.height(),ori_img.width(),sail.Format.FORMAT_YUV420P,sail.ImgDtype.DATA_TYPE_EXT_1N_BYTE)
-                    self.bmcv.convert_format(ori_img,image) # 转换bmimg格式
-                    
-                    score_d = "{}".format(obj[5])
-                    self.bmcv.putText(image, score_d ,x1, y1, [0,0,255], 1.4, 2)
-                    put_chinese_img = draw(image.asmat(),x1, y1,lp_line,i,j) # numpy 转bmimg？
-                    # 写不上中文？
-                    # image = self.bmcv.mat_to_bm_image(put_chinese_img) 
-                    # self.bmcv.imwrite("{}_{}.jpg".format(i,j),image)
-                    # cv2.imwrite("{}_{}.jpg".format(i,j),put_chinese_img)
-                    print("xxxxxxxxxxxx---write---done----xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+                    # ocv img :{(cid,fid):sail.bmimg}
+                    cid_yolo_ori_img,fid_yolo_ori_img = list(ocv_image.keys())[0]
 
+                    if (i,j) != (cid_yolo_ori_img,fid_yolo_ori_img):
+                        logging.error("lprnet_post_and_draw_result: not equal frame.must be something wrong")
+                        
+                    else:
+                        x1, y1, x2, y2, category_id, score = obj
+                        # 在这里内存泄漏？!!
+                        draw_lp((list(ocv_image.values())[0]).asmat(),x1, y1, x2, y2,score,lp_chinese_line,i,j,self.process_id,temp)
+                        ocv_image.clear() # 似乎不起作用
 
             if self.loop_count <=  image_idx_list[-1]:
                 logging.debug("LOOPS DONE")
@@ -360,8 +352,8 @@ class MultiDecoderThread(object):
         self.exit_flag = True
         self.flag_lock.release()
 
-def process_demo(tpu_id, max_que_size, video_name_list, yolo_bmodel,lprnet_bmodel, loop_count, process_id,dete_threshold,nms_threshold):
-    process =  MultiDecoderThread(tpu_id, video_name_list, sail.sail_resize_type.BM_PADDING_TPU_LINEAR, max_que_size, loop_count,process_id)
+def process_demo(draw_images,tpu_id, max_que_size, video_name_list, yolo_bmodel,lprnet_bmodel, loop_count, process_id,dete_threshold,nms_threshold):
+    process =  MultiDecoderThread(draw_images,tpu_id, video_name_list, sail.sail_resize_type.BM_PADDING_TPU_LINEAR, max_que_size, loop_count,process_id)
     process.InitProcess(yolo_bmodel,lprnet_bmodel,dete_threshold,nms_threshold)
 
 
@@ -399,7 +391,7 @@ if __name__ == '__main__':
 
     dete_threshold,nms_threshold = 0.65,0.65
 
-    decode_yolo_processes = [Process(target=process_demo,args=(args.dev_id, max_que_size, input_videos, args.yolo_bmodel,args.lprnet_bmodel, loop_count, i,dete_threshold,nms_threshold)) for i in range(process_nums) ]
+    decode_yolo_processes = [Process(target=process_demo,args=(args.draw_images,args.dev_id, max_que_size, input_videos, args.yolo_bmodel,args.lprnet_bmodel, loop_count, i,dete_threshold,nms_threshold)) for i in range(process_nums) ]
     for i in decode_yolo_processes:
         i.start()
         logging.debug('start decode and yolo process')
