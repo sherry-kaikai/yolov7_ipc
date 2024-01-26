@@ -30,6 +30,7 @@ INFO:root:video nums16, process is 4,total time is 13.749923467636108,loops for 
 
 **（相当于 13.6ms 每4batch）**
 
-但是16路存图的时候内存泄漏的问题还是没解决，4路存图内存不泄露但是不能正常退出。 dmesg 看到报错：[1] :ion_ioctl ion alloc failed, fd=-12, from python3
-不存图，video = 4 和16可以正常退出
+但是16路存图的时候内存泄漏的问题还是没解决，4路存图内存不泄露但是不能正常退出,而且4路视频，存图cpu 135%，。。。 dmesg 看到报错：[1] :ion_ioctl ion alloc failed, fd=-12, from python3
+不存图，video = 4 和16可以正常退出 ，cpu 40%左右
+
 
