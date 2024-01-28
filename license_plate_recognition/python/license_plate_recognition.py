@@ -314,9 +314,14 @@ class MultiDecoderThread(object):
         Args:
             ostimg_box_queue (queue.Queue): 
         """
+        file = open('lp_result.txt', 'w')
+        template_infos = {}
+        template_in_threshold = 4
+        template_out_thresh = 4
 
         start_time = time.time()
         while (True):
+            rm_list = []
             # 1 get lprnet process res
             if self.get_exit_flag():
                 break
@@ -342,26 +347,36 @@ class MultiDecoderThread(object):
             print(res)
             logging.info('Process {}, LPRNET POSTPROCESS DONE,res{}'.format(self.process_id, res))
 
-            # draw images
-            if self.draw_images:
-                pass
-                # for temp in range(len(res)):
-                #     i = channel_list[temp]
-                #     j = image_idx_list[temp]
-                #     lp_chinese_line = res[temp]
-
-                #     ocv_image, obj = ostimg_box_queue.get(True) # get ost_imgs and box from yolo post
-
-                    
-                #     cid_yolo_ori_img,fid_yolo_ori_img = list(ocv_image.keys())[0] # ocv img :{(cid,fid):sail.bmimg}
-
-                #     if (i,j) != (cid_yolo_ori_img,fid_yolo_ori_img):
-                #         logging.error("lprnet_post_and_draw_result: not equal frame.must be something wrong")
+            # remove repeat lp 
+            for i  in range(len(res)):
+                lp_name = res[i]
+                cid = channel_list[i] 
+                fid = image_idx_list[i]
+                if lp_name in template_infos.keys():
+                    template_infos[lp_name]["in"]+=1
+                    if template_infos[lp_name]["in"]==template_in_threshold:
+                        # up_list.append(lp_res)      
+                        file.write(f"process{self.process_id}:cid {cid},fid {fid},recongized license plates {lp_name} \n")
+                else:
+                    template_infos[lp_name]={}
+                    template_infos[lp_name]["in"]=1
+                    if template_infos[lp_name]["in"]==template_in_threshold:
+                        # up_list.append(lp_res)
+                        file.write(f"process{self.process_id}:cid {cid},fid {fid},recongized license plates {lp_name} \n")
                         
-                #     else:
-                #         x1, y1, x2, y2, category_id, score = obj
-                #         draw_lp((list(ocv_image.values())[0]).asmat(),x1, y1, x2, y2,score,lp_chinese_line,i,j,self.process_id,temp)
-                #         ocv_image.clear() 
+                for key in template_infos.keys():
+                    if key != lp_name:
+                        if "out" in template_infos[key].keys():
+                            template_infos[key]["out"]+=1
+                            if template_infos[key]["out"]>=template_out_thresh:
+                                rm_list.append(key)       
+                        else:
+                            template_infos[key]["out"]=1
+                if len(rm_list) :
+                    for key in rm_list:
+                        # print(key,rm_list,template_infos)
+                        if key in template_infos:
+                            del template_infos[key]
 
             if self.loop_count <=  image_idx_list[-1]:
                 logging.info("LOOPS DONE")
