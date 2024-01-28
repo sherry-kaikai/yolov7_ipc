@@ -7,10 +7,8 @@ import queue
 from multiprocessing import Process
 import argparse
 import logging
-import cv2
-import copy
+
 from chars import CHARS,CHARS_DICT
-# from draw_chinese import draw_lp
 
 import signal
 
@@ -290,17 +288,6 @@ class MultiDecoderThread(object):
                     image = sail.BMImage(self.handle,img.height(),img.width(),sail.Format.FORMAT_YUV420P,sail.ImgDtype.DATA_TYPE_EXT_1N_BYTE)
                     self.bmcv.convert_format(img,image)
                     self.bmcv.imwrite("c{}_f{}__P{}.jpg".format(channel,image_idx,self.process_id),image)
-
-
-                    #     while ostimg_box_queue.full() and not self.get_exit_flag(): 
-                    #         print("lprnet_pre_and_process put ost img to ostimg_box_queue is full!!!!!!!!!!!!")
-                    #         logging.dehbg("lprnet_pre_and_process put ost img to ostimg_box_queue is full!!!!!!!!!!!!")
-                    #         logging.error("IM WAITING!! ............")
-                    #         time.sleep(0.01)
-                    #     copy_bmimg = sail.BMImage(self.handle,img.height(),img.width(),img.format(), img.dtype())
-                    #     self.bmcv.image_copy_to(img,copy_bmimg)
-                        
-                    #     ostimg_box_queue.put(({(channel,image_idx):copy_bmimg},obj)) # 是这里有内存泄漏吗
             else:
                 logging.error("lprnet_pre_and_process: yolo post result idx, is not equal to origin images idx:")
                 logging.error((channel,image_idx) ,list(ocv_image.keys())[0])

@@ -25,6 +25,9 @@ then
     python3 -m dfss --url=open@sophgo.com:/sophon-demo/license_plate_recognition/1080_1920_5s.7z
     7z x 1080_1920_5s.7z 
     mv 1080_1920_5s.mp4 ../datasets/   
+    python3 -m dfss --url=open@sophgo.com:/sophon-demo/license_plate_recognition/licenseplate_640516-h264.7z
+    7z x licenseplate_640516-h264.7z 
+    mv licenseplate_640516-h264.mp4 ../datasets/  
     echo "datasets download!"
 else
     echo "Datasets folder exist! Remove it if you need to update."
